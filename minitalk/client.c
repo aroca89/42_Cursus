@@ -6,11 +6,11 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:31:36 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/07/20 21:23:05 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:39:24 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h" // Libreria para nuestras funciones
+#include "libft_42/libft.h" // Libreria para nuestras funciones
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
@@ -28,7 +28,7 @@ static void ft_send_bit(int server_pid, unsigned char c)
             while (kill(server_pid, SIGUSR2) != 0);
         usleep(50);
         usleep(50);
-        bit++;
+        bit++; 
     }
 }
 

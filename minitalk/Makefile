@@ -5,30 +5,28 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/31 07:25:36 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/07/26 17:15:31 by aroca-pa         ###   ########.fr        #
+#    Created: 2023/07/26 16:59:30 by aroca-pa          #+#    #+#              #
+#    Updated: 2023/07/26 19:41:54 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile para compilar el programa push_swap
+# Makefile para compilar el programa server
 
 # ********************************* VARIABLES ******************************** #
-NAME = push_swap
-INCLUDES = push_swap.h
+SERVER_NAME = server
+CLIENT_NAME = client
+
+INCLUDES = 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address #-02
+CFLAGS = -Wall -Werror  -Wextra -g3 #-fsanitize=address #-02
 
-SRC_DIR = ./src
-OBJ_DIR = obj
+SERVER_SRC = server.c\
 
-SRC = push_swap.c\
-	  push.c\
-	  rotate.c\
-	  reverse_rotate.c\
-	  swap.c\
-	  checkerror.c\
-	  main.c\
-	  onetwothree.c\
+CLIENT_SRC = client.c\
+
+SERVER_OBJ = $(SERVER_SRC:.c=.o)
+
+CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 
 # ********************************* VARIABLES ******************************** #
 
@@ -36,30 +34,32 @@ LIBFT_DIR = libft_42
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # ********************************* Reglas ************************************ #
-all: $(NAME)
+all: title $(SERVER_NAME) $(CLIENT_NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+$(SERVER_NAME): $(SERVER_OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(SERVER_OBJ) $(LIBFT) -o $(SERVER_NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)
+$(CLIENT_NAME): $(CLIENT_OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(CLIENT_OBJ) $(LIBFT) -o $(CLIENT_NAME)
+
+%.O: %.C $(INCLUDES)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
-
+	
 $(LIBFT):
 	make bonus -C $(LIBFT_DIR)
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(SERVER_OBJ) $(CLIENT_OBJ)
 	make clean -C $(LIBFT_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(SERVER_NAME) $(CLIENT_NAME)
 	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
 .PHONY: all clean fclean re debug sani noflags
-
 
 # ******************************** Reglas debug ******************************** #
 noflags: CFLAGS =
@@ -71,23 +71,15 @@ debug: clean $(NAME)
 sani: CFLAGS += -g3 -fsanitize=address
 sani: clean $(NAME)
 
-# *************************** Reglas de commits *************************** #
-
-commit: fclean
-	git add .
-	git commit -m "save make"
-	git push
-
 # ******************************** Titulos *********************************** #
 print-%:
 	@echo $* = $($*)
 
 title:
 	@echo "==============================================="
-	@echo "    Compilando el programa push_swap             "
+	@echo "    Compilando el programa server y client            "
 	@echo "==============================================="
 
 # ************************ VARIABLES de depuracion *************************** #
 
 $(foreach v, $(.VARIABLES), $(if $(filter-out environment% default automatic, $(origin $v)), $(warning $v=$($v) ($(value $v)))))
-

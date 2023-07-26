@@ -6,13 +6,14 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 18:45:32 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/07/20 21:23:09 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:23:33 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h> //
-#include "../libft/libft.h" // Libreria para nuestras funciones
+#include "libft_42/libft.h" // Libreria para nuestras funciones
 #include "unistd.h" // Para getpid()
+#include "signal.h"
 
 void ft_signal_received(int sig)
 {
