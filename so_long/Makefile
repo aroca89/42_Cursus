@@ -6,30 +6,30 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 12:16:22 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/08/11 13:56:59 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/08/21 20:01:42 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Makefile para compilar el programa so_long
 
 # ********************************* VARIABLES ******************************** #
-NAME = SO_LONG
+NAME = so_long.a
 INCLUDES = so_long.h
 CC = gcc
-CFLAGS = -Wall -Werror Wextra -lm -g3 -fsanitize=address #-02
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address #-02
 
-RESOURCERS_PATH = ./resourcers
-RESOURCERS =	main.c\
+RESOURCES_PATH = ./resources
+RESOURCES =		main.c\
 				checkargument.c\
 
 # ****************************** CREACION OBJECTS ***************************** #
 
-OBJECTS_PATH = objects
-OBJS = $(addprefix $(OBJECTS_PATH)/, $(RESOURCERS:.c=.o))
+OBJECTS_PATH = ./objects
+OBJECTS = $(addprefix $(OBJECTS_PATH)/, $(RESOURCES:.c=.o))
 
-$(OBJECTS_PATH)/%.o: $(RESOURCERS_PATH)/%.c $(INCLUDES)
+$(OBJECTS_PATH)/%.o: $(RESOURCES_PATH)/%.c $(INCLUDES)
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -C $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # ************************* VARIABLES OTRAS BIBLIOTECAS *********************** #
 
@@ -51,12 +51,29 @@ ALL: $(NAME)
 
 $(NAME): $(OBJECTS)
 	make bonus -C $(LIBFT_PATH)
-	make bonus -C $(PRINTF_PATH)
-	make bonus -C $(GNL_PATH)
-	make bonus -C $(MLX_PATH)
-	$(CC) $(CFLAGS) $(OBJECTS_PATH) $(LIBFT_A) $(PRINTF_A) $(GNL_A) $(MLX_A) -o $@
+	make -C $(PRINTF_PATH)
+	make -C $(GNL_PATH)
+	make -C $(MLX_PATH)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT_A) $(PRINTF_A) $(GNL_A) $(MLX_A) -o $@ -lm
 
+clean:
+	rm -rf $(OBJECTS_PATH)
+	make clean -C $(LIBFT_PATH)
+	make clean -C $(PRINTF_PATH)
+	make clean -C $(GNL_PATH)
+	make clean -C $(MLX_PATH)
 
+fclean: clean 
+	rm -rf $(NAME)
+	make fclean -C $(LIBFT_PATH)
+	make fclean -C $(PRINTF_PATH)
+	make clean -C $(GNL_PATH)
+	make clean -C $(MLX_PATH)
+	
+	
+re: fclean all 
+
+.PHONY: all clean fclean re debug sani noflags
 
 # ******************************** Reglas debug ******************************* #
 noflags: CFLAGS =

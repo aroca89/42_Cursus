@@ -6,11 +6,11 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/01 11:26:02 by aroca-pa          #+#    #+#              #
-#    Updated: 2022/12/01 11:26:46 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/08/21 18:33:20 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = ft_printf.a
 
 SRCS = ft_printf.c
 
