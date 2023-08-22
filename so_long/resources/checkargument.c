@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:56:31 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/11 12:24:15 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/22 20:03:19 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,19 @@
 
 void check_argument(int argc, char *argv[])
 {
-    if (argc != 2)
-    {
-        perror("Error uso: %s <nombre_del_archivo>\n");
-        return;
-    }
+    char *extension
+    size_t extension_len
+    size_t filaname_len
     
-    char *extension = ".ber";
-    size_t extension_len = ft_strlen(extension);
-    size_t filaname_len = ft_strlen(argv[1]);
+    extension = ".ber";
+    extension_len = ft_strlen(extension);
+    filaname_len= ft_strlen(argv[1]);
 
     if (extension_len > filaname_len || ft_strncmp(argv[1] + filaname_len - extension_len, extension, extension_len) != 0)
     {
         perror("Error: La extension del archivo debe ser '.ber'\n");
         return;
     }
-
     int archivo;
 
     archivo = open(argv[1], O_RDONLY);
@@ -45,6 +42,5 @@ void check_argument(int argc, char *argv[])
         perror("Error al abrir el archivo\n");
         return;
     }
-
     close(archivo); // Cierra el archivo cuando ya no es necesario
 }
