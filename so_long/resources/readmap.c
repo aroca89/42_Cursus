@@ -6,14 +6,16 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:04:10 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/22 22:50:21 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:21:14 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h> // Biblioteca para funcion CLOSE
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "get_next_line.h"
+#include "../get_next_line/get_next_line.h"
+#include "../so_long.h"
 
 static int len_lines(const char *filename)
 { 
@@ -64,10 +66,18 @@ static char **read_lines(const char *filename, int num_lines)
     return map;
 }
 
-char **convert_maps(const char *filename)
+t_map *convert_maps(const char *filename)
 {
     int num_lines = len_lines(filename);
-    char **map = read_lines(filename, num_lines);
-
+    char **map_data = read_lines(filename, num_lines);
+    
+    t_map *map = (t_map *)malloc(sizeof(t_map));
+    if (!map)
+    {
+        perror("ERROR de memoria\n");
+        exit(EXIT_FAILURE);
+    }
+    map->data = map_data; // Asignar el arreglo bidimensional a la estructura
+  
     return map;
 }

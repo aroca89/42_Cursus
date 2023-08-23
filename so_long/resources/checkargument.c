@@ -6,10 +6,11 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:56:31 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/22 20:03:19 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/23 20:56:58 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../get_next_line/get_next_line.h" // Necesaria para evitar repeticion de strlen
 #include "../ft_printf/ft_printf.h" // Inclusión de la biblioteca personalizada ft_printf
 #include "../libft_42/libft.h" // Inclusión de la biblioteca personalizada libft
 #include <stdio.h> // Biblioteca estándar para funciones de entrada/salida
@@ -19,11 +20,11 @@
 #include <fcntl.h> // Necesario para la funcion open
 #include <unistd.h> // Incluimos unistd.h para la función close
 
-void check_argument(int argc, char *argv[])
+void check_argument(char *argv[])
 {
-    char *extension
-    size_t extension_len
-    size_t filaname_len
+    char *extension;
+    size_t extension_len;
+    size_t filaname_len;
     
     extension = ".ber";
     extension_len = ft_strlen(extension);

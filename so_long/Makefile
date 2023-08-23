@@ -6,7 +6,7 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 12:16:22 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/08/21 20:01:42 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/08/23 20:56:43 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,14 @@
 NAME = so_long.a
 INCLUDES = so_long.h
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address #-02
+CFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address #-02
 
 RESOURCES_PATH = ./resources
 RESOURCES =		main.c\
 				checkargument.c\
+				checkfuntions.c\
+				readmap.c\
+				checkmap.c\
 
 # ****************************** CREACION OBJECTS ***************************** #
 

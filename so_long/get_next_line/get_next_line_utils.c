@@ -6,14 +6,14 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 16:47:25 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/03/19 13:56:37 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:42:49 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdlib.h>
 
-size_t	ft_strlen(const char *s)
+size_t	ftgnl_strlen(const char *s)
 {
 	size_t	len;
 
@@ -31,10 +31,10 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	i;
 
-	if (ft_strlen(s) < start)
+	if (ftgnl_strlen(s) < start)
 		return (NULL);
-	if (ft_strlen(s) < len)
-		len = ft_strlen(s);
+	if (ftgnl_strlen(s) < len)
+		len = ftgnl_strlen(s);
 	str = (char *)malloc((len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
@@ -71,7 +71,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 
 	if (!s1)
 		return ((char *)s2);
-	total = ft_strlen(s1) + ft_strlen(s2);
+	total = ftgnl_strlen(s1) + ftgnl_strlen(s2);
 	str = (char *)malloc(sizeof(char) * total + 1);
 	if (!str)
 		return (NULL);

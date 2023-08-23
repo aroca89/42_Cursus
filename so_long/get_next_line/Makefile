@@ -6,12 +6,12 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/21 18:00:55 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/08/21 18:34:10 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/08/23 14:43:41 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NOM= gnl.a
-INCLUDES = get_next_line.h
+INCLUDES =	get_next_line.h\
 CC = gcc
 CFLAGS+= -Wall -Werror -Wextra
 SRC= 	get_next_line_utils.c\
