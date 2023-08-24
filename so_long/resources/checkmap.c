@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/24 21:26:34 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/24 21:39:00 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void map_closed(t_map *map)
     printf("map->cols = %d\n", map->cols);
     while (map->data[y][x] != '\0')
     {
-        printf("Leyendo borde superior e inferior: %c\n", map->data[y][x - 1]);
+        //printf("Leyendo borde superior e inferior: %c\n", map->data[y][x - 1]);
         if( map->data[0][x - 1] != '1'  || map->data[map->rows - 1][x - 1] != '1')
         {    
-            printf("Error en posición [%d][%d] = %c\n", y, (x - 1), map->data[y][map->cols - 1]);
+            //printf("Error en posición [%d][%d] = %c\n", y, (x - 1), map->data[y][map->cols - 1]);
             perror("Error\nNo esta cerrado el mapa\n");
             exit(EXIT_FAILURE);
         }
@@ -65,18 +65,20 @@ void map_closed(t_map *map)
     while (map->data[y] != NULL)
     {
         
-        printf("Leyendo borde izquierdo y derecho: %c\n", map->data[y][x]);
+        //printf("Leyendo borde izquierdo y derecho: %c\n", map->data[y][x]);
         if( map->data[y - 1][0] != '1'|| map->data[y - 1][map->cols - 1] != '1' )
         {   
             
-            printf("Error en posición [%d][%d] = %c\n", y, x, map->data[y][x]);
+            //printf("Error en posición [%d][%d] = %c\n", y, x, map->data[y][x]);
             perror("Error\nNo esta cerrado el mapa\n");
             exit(EXIT_FAILURE);
         }
         y++;
     }
-    printf("El mapa está cerrado correctamente.\n");
+    //printf("El mapa está cerrado correctamente.\n");
 }
+
+
 void free_map(t_map *map)
 {
     int i = 0;

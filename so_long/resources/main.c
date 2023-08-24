@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:48 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/24 18:08:22 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/24 21:39:32 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int main(int argc, char *argv[])
     {
         check_argument(argv);
         t_map *map = convert_maps(argv[1]);
-        print_map(map);
+        
         map_is_rectangular(map); 
         map_closed(map); 
+        print_map(map);
         free_map(map);
+        
         return EXIT_SUCCESS; // Terminar con éxito;
     }
     else
