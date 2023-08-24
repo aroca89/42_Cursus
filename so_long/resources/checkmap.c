@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/24 21:39:00 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/24 23:17:16 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,44 @@ void map_closed(t_map *map)
     //printf("El mapa está cerrado correctamente.\n");
 }
 
+void check_points(t_map *map)
+{
+    int y;
+    int x;
+    char pixel;
+
+    y = 0;
+    while (map->data[y] != NULL)
+    {  
+        x = 0;
+        while(map->data[y][x] != '\0')
+        {  
+            pixel = map->data[y][x];              
+            printf("ERROR: Caracter no reconocido en posición [%d][%d]\n", y, x);
+            if( pixel != '1' && pixel != '0' && pixel != 'P' && pixel != 'E' && pixel != 'C' && pixel != '\n')
+            {
+                perror("ERROR\nCaracter no reconocido");
+                exit(EXIT_FAILURE);
+            }
+            if ( pixel == 'P')
+                map->place_start++;
+            if ( pixel == 'E')
+                map->exit++;
+            if ( pixel == 'C')
+                map->collectibles++;
+            x++;
+        }
+        y++;
+    }
+    if( map->place_start != 1 || map->exit != 1 || map->collectibles < 1)
+    {
+        perror("ERROR\nFail check points");
+        exit(EXIT_FAILURE);
+    }
+    printf("map->place_star = %d\n", map->place_start);
+    printf("map->exit = %d\n", map->exit);
+    printf("map->collectibles = %d\n", map->collectibles);
+}
 
 void free_map(t_map *map)
 {

@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/24 17:17:31 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/24 22:21:29 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void print_map(t_map *map);
 void map_is_rectangular(t_map *map);
 void free_map(t_map *map);
 void map_closed(t_map *map);
+void check_points(t_map *map);
 
 
 
