@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/24 23:17:16 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/25 20:47:21 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,11 @@ void check_points(t_map *map)
                 exit(EXIT_FAILURE);
             }
             if ( pixel == 'P')
+            {
                 map->place_start++;
+                map->character_position_row = y; // Asignar la fila actual
+                map->character_position_col = x; // Asignar la columna actual
+            }
             if ( pixel == 'E')
                 map->exit++;
             if ( pixel == 'C')
@@ -115,6 +119,23 @@ void check_points(t_map *map)
     printf("map->place_star = %d\n", map->place_start);
     printf("map->exit = %d\n", map->exit);
     printf("map->collectibles = %d\n", map->collectibles);
+    printf("Las coordenadas del personaje son (%d, %d)\n", map->character_position_row, map->character_position_col);
+    printf("Carácter en las coordenadas del personaje: %c\n", map->data[map->character_position_row][map->character_position_col]);
+}
+
+void	ft_floodfill(t_map *map, int x, int y)
+{
+	if (x >= map->cols || y >= map->rows || x < 0 || y < 0 || map->data[y][x] == '1' || map->data[y][x] == 'X')
+		return ;
+	else
+	{
+		map->data[y][x] = 'X';
+		ft_floodfill(map, x + 1, y);
+		ft_floodfill(map, x - 1, y);
+		ft_floodfill(map, x, y + 1);
+		ft_floodfill(map, x, y - 1);
+	}
+	return ;
 }
 
 void free_map(t_map *map)
