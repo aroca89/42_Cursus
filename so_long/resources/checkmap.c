@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/25 20:47:21 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:36:22 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void map_is_rectangular(t_map *map)
 {
     int  first_row_len;
     int row_len;
-    int index = 0; // Inicia en 1 para omitir la primera fila que es NULL
+    int index = 0;
     
     first_row_len = ftgnl_strlen(map->data[0]); // Usar el primer elemento
     

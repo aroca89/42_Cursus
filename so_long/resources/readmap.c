@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:04:10 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/28 17:42:24 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:14:14 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,7 @@ static char **read_lines(const char *filename, int num_lines)
         ft_lst_perror(MALLOC_ERROR, NULL);
 
     if (fd == -1)
-    {
-        perror("Error al abrir el archivo\n");
-        free(map);
-        exit(EXIT_FAILURE);
-    }
+        ft_lst_perror(INVALID_FILE, NULL);
 
     char *line;
     int i = 0;
@@ -72,8 +68,7 @@ t_map *convert_maps(const char *filename)
     t_map *map = (t_map *)ft_calloc(1, sizeof(t_map));
     if (!map)
         ft_lst_perror(MALLOC_ERROR, map);
-  
     map->data = map_data; // Asignar el arreglo bidimensional a la estructura
-  
     return map;
 }
+
