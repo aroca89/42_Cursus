@@ -6,7 +6,7 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 12:16:22 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/08/23 20:56:43 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/08/28 17:34:08 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ RESOURCES =		main.c\
 				checkfuntions.c\
 				readmap.c\
 				checkmap.c\
+				errorlist.c\
 
 # ****************************** CREACION OBJECTS ***************************** #
 

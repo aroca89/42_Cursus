@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/25 20:04:57 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:42:04 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 # define SO_LONG_H 
 
 # include <stdio.h>
+
+# define INVALID_ARGUMENTS 1
+# define INVALID_FILE 2
+# define INVALID_MAP 3
+# define INVALID_EXTENSION 4
+# define MALLOC_ERROR 5
+# define READ_ERROR 6
+# define EMPTY_MAP 7
+# define PLAYER_ERROR 8
+# define WALL_ERROR 9
+# define IMAGE_ERROR 10
 
 typedef struct s_map
 {
@@ -36,6 +47,7 @@ void free_map(t_map *map);
 void map_closed(t_map *map);
 void check_points(t_map *map);
 void	ft_floodfill(t_map *map, int x, int y);
+void ft_lst_perror(int type, t_map *map);
 
 
 
