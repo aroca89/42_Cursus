@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/31 18:52:20 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:10:00 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,20 +134,25 @@ void ft_floodfill(t_map *map, int x, int y)
 }
 
 
-void free_map(t_map *map)
-{
-    int i = 0;
-    
-    // Liberar la memoria asignada a cada fila del arreglo bidimensional 'data'
-    while (map->data[i] != NULL)
-    {
-        free(map->data[i]);
-        i++;
-    }
-    
-    // Liberar la memoria asignada al arreglo de punteros 'data' y a la estructura 'map' en sí
-    free(map->data);
-    free(map);
-}
 
+void is_map_pasable(t_map *map);
+{
+    int y;
+    int x;
+    
+    i = 0;
+    j = 0;
+    while(map->data[y] <= map->rows)
+    {
+        while(map->data[y][x] <= map->cols)
+        {
+            if(map->data[i][j] != 1 || map->data[i][j] != "X")
+            {
+                ft_lst_perror(PLAYER_CANNOT_REACH_EXIT, map_copy)
+                x++;
+            }
+        }
+        y++;
+    }
+}
 

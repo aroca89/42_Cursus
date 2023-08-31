@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:22:36 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/31 17:58:58 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/31 19:56:47 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,28 @@ void ft_lst_perror(int type, t_map *map)
         perror("Error\nThe map is not closed by '1'.\n");
     else if (type == IMAGE_ERROR)
         perror("Error.\nThe image is not xpm.\n");
+    else if (type ==  PLAYER_CANNOT_REACH_EXIT)
+        perror("Error.\nAn inaccessible cell was found\n")
 
     // Liberar la memoria asignada al mapa
     free_map(map);
 
     // Salir del programa con un código de error
     exit(-1);
+}
+
+void free_map(t_map *map)
+{
+    int i = 0;
+    
+    // Liberar la memoria asignada a cada fila del arreglo bidimensional 'data'
+    while (map->data[i] != NULL)
+    {
+        free(map->data[i]);
+        i++;
+    }
+    
+    // Liberar la memoria asignada al arreglo de punteros 'data' y a la estructura 'map' en sí
+    free(map->data);
+    free(map);
 }
