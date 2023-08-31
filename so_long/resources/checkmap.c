@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/31 20:10:00 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:22:31 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,23 +135,22 @@ void ft_floodfill(t_map *map, int x, int y)
 
 
 
-void is_map_pasable(t_map *map);
+void is_map_passable(t_map *map)
 {
     int y;
     int x;
     
-    i = 0;
-    j = 0;
-    while(map->data[y] <= map->rows)
+    y = 0;
+    x = 0;
+    while( y < map->rows)
     {
-        while(map->data[y][x] <= map->cols)
+        while( x < map->cols)
         {
-            if(map->data[i][j] != 1 || map->data[i][j] != "X")
-            {
-                ft_lst_perror(PLAYER_CANNOT_REACH_EXIT, map_copy)
-                x++;
-            }
+            if(map->data[y][x] != 1 || map->data[y][x] != 'X')
+                ft_lst_perror(PLAYER_CANNOT_REACH_EXIT, map);
+            x++;
         }
+        x = 0;
         y++;
     }
 }

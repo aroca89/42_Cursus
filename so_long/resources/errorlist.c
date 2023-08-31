@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:22:36 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/31 19:56:47 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:22:48 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void ft_lst_perror(int type, t_map *map)
     else if (type == IMAGE_ERROR)
         perror("Error.\nThe image is not xpm.\n");
     else if (type ==  PLAYER_CANNOT_REACH_EXIT)
-        perror("Error.\nAn inaccessible cell was found\n")
+        perror("Error.\nAn inaccessible cell was found\n");
 
     // Liberar la memoria asignada al mapa
     free_map(map);
