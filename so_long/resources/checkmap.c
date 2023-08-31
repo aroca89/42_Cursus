@@ -6,11 +6,11 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/31 18:03:02 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:52:20 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line/get_next_line.h"
+#include "../libft_42/libft.h"
 #include "../so_long.h"
 #include <stdio.h>
 
@@ -20,20 +20,26 @@ void map_is_rectangular(t_map *map)
     int row_len;
     int index = 0;
     
-    first_row_len = ftgnl_strlen(map->data[0]); // Usar el primer elemento
+    // Obtener la longitud de la primera fila
+    first_row_len = ft_strlen(map->data[0]); // Usar el primer elemento
     
+    // Iterar a través de las filas del mapa
     while (map->data[index] != NULL)
     {
-        row_len = ftgnl_strlen(map->data[index]);
+        // Obtener la longitud de la fila actual
+        row_len = ft_strlen(map->data[index]);
         
+        // Comprobar si la longitud de la fila actual es diferente a la longitud de la primera fila
         if (row_len != first_row_len)
-            ft_lst_perror(INVALID_MAP, map)
+            ft_lst_perror(INVALID_MAP, map); // Si no es rectangular, mostrar un mensaje de error y salir
         index++;
     }
-    // Asignar los valores a los campos de la estructura map
+    
+    // Asignar los valores de filas y columnas a la estructura del mapa
     map->rows = index;
-    map->cols = first_row_len -1;
+    map->cols = first_row_len - 1;
 }
+
 
 void map_closed(t_map *map)
 {
@@ -43,36 +49,30 @@ void map_closed(t_map *map)
     y = 0;
     x = 1;
     
-    printf("map->rows = %d\n", map->rows);
-    printf("map->cols = %d\n", map->cols);
+    // Comprobar el borde superior e inferior
     while (map->data[y][x] != '\0')
     {
-        //printf("Leyendo borde superior e inferior: %c\n", map->data[y][x - 1]);
-        if( map->data[0][x - 1] != '1'  || map->data[map->rows - 1][x - 1] != '1')
-        {    
-            //printf("Error en posición [%d][%d] = %c\n", y, (x - 1), map->data[y][map->cols - 1]);
-            perror("Error\nNo esta cerrado el mapa\n");
-            exit(EXIT_FAILURE);
-        }
+        // Verificar si el borde superior e inferior contiene '1'
+        if (map->data[0][x - 1] != '1' || map->data[map->rows - 1][x - 1] != '1')
+            ft_lst_perror(WALL_ERROR, map); // Si no está cerrado, mostrar un mensaje de error y salir
         x++;
     }
-    y = 2;
     
+    // Reiniciar valores
+    y = 2;
+    x = 0;
+    
+    // Comprobar el borde izquierdo y derecho
     while (map->data[y] != NULL)
     {
-        
-        //printf("Leyendo borde izquierdo y derecho: %c\n", map->data[y][x]);
-        if( map->data[y - 1][0] != '1'|| map->data[y - 1][map->cols - 1] != '1' )
-        {   
-            
-            //printf("Error en posición [%d][%d] = %c\n", y, x, map->data[y][x]);
-            perror("Error\nNo esta cerrado el mapa\n");
-            exit(EXIT_FAILURE);
-        }
+        // Verificar si el borde izquierdo y derecho contiene '1'
+        if (map->data[y - 1][0] != '1' || map->data[y - 1][map->cols - 1] != '1')  
+            ft_lst_perror(WALL_ERROR, map); // Si no está cerrado, mostrar un mensaje de error y salir
         y++;
     }
-    //printf("El mapa está cerrado correctamente.\n");
+    // El mapa está cerrado correctamente
 }
+
 
 void check_points(t_map *map)
 {
@@ -81,69 +81,73 @@ void check_points(t_map *map)
     char pixel;
 
     y = 0;
+    // Recorrer filas del mapa
     while (map->data[y] != NULL)
     {  
         x = 0;
+        // Recorrer caracteres en una fila
         while(map->data[y][x] != '\0')
         {  
             pixel = map->data[y][x];              
-            printf("ERROR: Caracter no reconocido en posición [%d][%d]\n", y, x);
-            if( pixel != '1' && pixel != '0' && pixel != 'P' && pixel != 'E' && pixel != 'C' && pixel != '\n')
-            {
-                perror("ERROR\nCaracter no reconocido");
-                exit(EXIT_FAILURE);
-            }
-            if ( pixel == 'P')
+            // Verificar si el pixel no es uno de los caracteres permitidos
+            if (pixel != '1' && pixel != '0' && pixel != 'P' && pixel != 'E' && pixel != 'C' && pixel != '\n')
+                ft_lst_perror(INVALID_MAP, map);
+            // Contar el número de elementos 'P', 'E' y 'C'
+            if (pixel == 'P')
             {
                 map->place_start++;
                 map->character_position_row = y; // Asignar la fila actual
                 map->character_position_col = x; // Asignar la columna actual
             }
-            if ( pixel == 'E')
+            if (pixel == 'E')
                 map->exit++;
-            if ( pixel == 'C')
+            if (pixel == 'C')
                 map->collectibles++;
             x++;
         }
         y++;
     }
-    if( map->place_start != 1 || map->exit != 1 || map->collectibles < 1)
-    {
-        perror("ERROR\nFail check points");
-        exit(EXIT_FAILURE);
-    }
-    printf("map->place_star = %d\n", map->place_start);
-    printf("map->exit = %d\n", map->exit);
-    printf("map->collectibles = %d\n", map->collectibles);
-    printf("Las coordenadas del personaje son (%d, %d)\n", map->character_position_row, map->character_position_col);
-    printf("Carácter en las coordenadas del personaje: %c\n", map->data[map->character_position_row][map->character_position_col]);
+    // Verificar si hay exactamente un punto de partida ('P'), una salida ('E') y al menos un coleccionable ('C')
+    if (map->place_start != 1 || map->exit != 1 || map->collectibles < 1)
+        ft_lst_perror(INVALID_MAP, map);
 }
 
-void	ft_floodfill(t_map *map, int x, int y)
+
+
+void ft_floodfill(t_map *map, int x, int y)
 {
-	if (x >= map->cols || y >= map->rows || x < 0 || y < 0 || map->data[y][x] == '1' || map->data[y][x] == 'X')
-		return ;
-	else
-	{
-		map->data[y][x] = 'X';
-		ft_floodfill(map, x + 1, y);
-		ft_floodfill(map, x - 1, y);
-		ft_floodfill(map, x, y + 1);
-		ft_floodfill(map, x, y - 1);
-	}
-	return ;
+    // Verificar si las coordenadas (x, y) están fuera del mapa o en una posición no válida ('1' o 'X')
+    if (x >= map->cols || y >= map->rows || x < 0 || y < 0 || map->data[y][x] == '1' || map->data[y][x] == 'X')
+        return;
+    else
+    {
+        // Marcar la posición actual con 'X' para indicar que ha sido visitada
+        map->data[y][x] = 'X';
+        
+        // Llamadas recursivas a ft_floodfill para explorar las celdas adyacentes
+        ft_floodfill(map, x + 1, y); // Derecha
+        ft_floodfill(map, x - 1, y); // Izquierda
+        ft_floodfill(map, x, y + 1); // Abajo
+        ft_floodfill(map, x, y - 1); // Arriba
+    }
+    return;
 }
+
 
 void free_map(t_map *map)
 {
     int i = 0;
     
+    // Liberar la memoria asignada a cada fila del arreglo bidimensional 'data'
     while (map->data[i] != NULL)
     {
         free(map->data[i]);
         i++;
     }
+    
+    // Liberar la memoria asignada al arreglo de punteros 'data' y a la estructura 'map' en sí
     free(map->data);
     free(map);
 }
+
 
