@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/28 20:36:22 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:03:02 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ void map_is_rectangular(t_map *map)
         row_len = ftgnl_strlen(map->data[index]);
         
         if (row_len != first_row_len)
-        {
-            perror("Error: el mapa no es rectangular\n");
-            exit(EXIT_FAILURE);
-        }
-        
+            ft_lst_perror(INVALID_MAP, map)
         index++;
     }
     // Asignar los valores a los campos de la estructura map

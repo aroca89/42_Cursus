@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:04:10 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/31 17:55:36 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:04:18 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ static int len_lines(const char *filename)
 
     // Verificar si se pudo abrir el archivo
     if (fd == -1)
-    {
-        perror("Error al abrir el archivo\n");
-        exit(EXIT_FAILURE);
-    } 
+        ft_lst_perror(INVALID_FILE, NULL);
 
     // Contar el número de líneas en el archivo usando 'get_next_line'
     while (get_next_line(fd))
