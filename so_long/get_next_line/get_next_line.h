@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 10:01:19 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/23 14:43:25 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:34:59 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 size_t	ftgnl_strlen(const char *s);
 char	*get_next_line(int fd);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
+char	*ftgnl_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strjoin(const char *s1, const char *s2);
 int		ft_checkchar(char *s, int c);
 #endif

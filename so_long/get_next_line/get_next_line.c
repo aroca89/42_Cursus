@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 10:03:15 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/23 14:43:14 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:35:30 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static char	*get_line(char **ptr)
 	i = 0;
 	while (*ptr && (*ptr)[i] && (*ptr)[i] != '\n')
 		i++;
-	str = ft_substr(*ptr, 0, i + 1);
+	str = ftgnl_substr(*ptr, 0, i + 1);
 	temp = *ptr;
-	*ptr = ft_substr(*ptr, i + 1, ftgnl_strlen(*ptr) - i);
+	*ptr = ftgnl_substr(*ptr, i + 1, ftgnl_strlen(*ptr) - i);
 	free(temp);
 	if (*str == '\0')
 	{

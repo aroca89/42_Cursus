@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:04:10 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/28 20:14:14 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:37:22 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,3 +72,37 @@ t_map *convert_maps(const char *filename)
     return map;
 }
 
+t_map *copy_map(t_map *map)
+{
+    int i;
+    t_map *map_copy;
+    
+    // Reservar memoria para la estructura de la copia
+    map_copy = (t_map *)ft_calloc(1, sizeof(t_map));
+    if (!map_copy)
+        ft_lst_perror(MALLOC_ERROR, map_copy);
+    
+    // Copiar todos los campos de la estructura original a la copia
+    *map_copy = *map;
+    
+    i = 0;
+    // Reservar memoria para el arreglo bidimensional de la copia
+    map_copy->data = (char **)ft_calloc(map->rows , sizeof(char *));
+    if (!map_copy->data)
+        ft_lst_perror(MALLOC_ERROR, map_copy);
+    
+    // Copiar cada fila del arreglo bidimensional
+    while (map->data[i] != NULL)
+    {
+        // Usar ft_substr para copiar la fila
+        map_copy->data[i] = ft_substr(map->data[i], 0, ft_strlen(map->data[i]));
+        if (!map_copy->data)
+            ft_lst_perror(MALLOC_ERROR, map_copy);
+        i++;
+    }
+    
+    // Marcar el final de la matriz en la copia
+    map_copy->data[i] = NULL;
+    
+    return map_copy;
+}

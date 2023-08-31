@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/28 17:42:04 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:22:04 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void map_closed(t_map *map);
 void check_points(t_map *map);
 void	ft_floodfill(t_map *map, int x, int y);
 void ft_lst_perror(int type, t_map *map);
+t_map *copy_map(t_map *map);
 
 
 
