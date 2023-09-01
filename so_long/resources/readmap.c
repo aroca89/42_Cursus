@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:04:10 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/31 18:04:18 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/01 19:30:26 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_map *convert_maps(const char *filename)
 }
 
 
-t_map *copy_map(t_map *map)
+t_map *copy_map(t_map *struct_map)
 {
     int i;
     t_map *map_copy;
@@ -104,19 +104,19 @@ t_map *copy_map(t_map *map)
         ft_lst_perror(MALLOC_ERROR, map_copy);
     
     // Copiar todos los campos de la estructura original a la copia
-    *map_copy = *map;
+    *map_copy = *struct_map;
     
-    i = 0;
+    
     // Reservar memoria para el arreglo bidimensional de la copia
-    map_copy->data = (char **)ft_calloc(map->rows , sizeof(char *));
+    map_copy->data = (char **)ft_calloc(struct_map->rows + 1 , sizeof(char *));
     if (!map_copy->data)
         ft_lst_perror(MALLOC_ERROR, map_copy);
-    
+    i = 0;
     // Copiar cada fila del arreglo bidimensional
-    while (map->data[i] != NULL)
+    while (struct_map->data[i] != NULL)
     {
         // Usar ft_substr para copiar la fila
-        map_copy->data[i] = ft_substr(map->data[i], 0, ft_strlen(map->data[i]));
+        map_copy->data[i] = ft_substr(struct_map->data[i], 0, ft_strlen(struct_map->data[i]));
         if (!map_copy->data)
             ft_lst_perror(MALLOC_ERROR, map_copy);
         i++;
