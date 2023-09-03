@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:48 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/03 16:42:54 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/03 18:31:37 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int main(int argc, char *argv[])
         if(is_map_passable(map_copy) == 1)
             printf("%s", "EL MAPA ES PASABLE");
             
-        window_init();
+        window_init((void *)map);
+    
         return EXIT_SUCCESS; // Terminar con éxito;
     }
     else

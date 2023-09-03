@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/03 16:37:41 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/03 18:47:00 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,26 @@ void	ft_floodfill(t_map *struct_map, int x, int y);
 void ft_lst_perror(int type, t_map *map);
 int is_map_passable(t_map *struct_map);
 t_map *copy_map(t_map *struct_map);
-void window_init(void);
+
+typedef struct s_img
+{
+	void	*background;
+    void    *collectibles;
+    void    *exit;
+    void    *player;
+    void    *wall;	
+}               t_img;
+
+typedef struct s_render
+{
+    t_img   *img;
+    void    *mlx;
+    void    *mlx_win;
+}           t_render;
+
+void ft_mlx_perror(int type);
+void window_init(void *struct_map);
+void render_sprites(t_render *render);
 
 
 
