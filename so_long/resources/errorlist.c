@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:22:36 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/08/31 20:22:48 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/03 13:51:01 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ void free_map(t_map *map)
     int i = 0;
     
     // Liberar la memoria asignada a cada fila del arreglo bidimensional 'data'
-    while (map->data[i] != NULL)
+    if (map != NULL)
     {
-        free(map->data[i]);
-        i++;
+        while (map->data[i] != NULL)
+        {
+            free(map->data[i]);
+            i++;
+        }
+        
+        // Liberar la memoria asignada al arreglo de punteros 'data' y a la estructura 'map' en sí
+        free(map->data);
+        free(map);
     }
-    
-    // Liberar la memoria asignada al arreglo de punteros 'data' y a la estructura 'map' en sí
-    free(map->data);
-    free(map);
 }

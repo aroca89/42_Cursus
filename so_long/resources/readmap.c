@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:04:10 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/01 19:30:26 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/03 13:47:44 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,12 @@ static char **read_lines(const char *filename, int num_lines)
 t_map *convert_maps(const char *filename)
 {
     // Obtener el número de líneas en el archivo
-    int num_lines = len_lines(filename);
+    int num_lines; 
     
+    num_lines = len_lines(filename);
+    if (num_lines == 0)
+        ft_lst_perror(1, NULL);
+
     // Leer las líneas del archivo y almacenarlas en un arreglo bidimensional
     char **map_data = read_lines(filename, num_lines);
     

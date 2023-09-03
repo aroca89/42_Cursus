@@ -6,7 +6,7 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 12:16:22 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/08/28 17:34:08 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/09/03 16:30:25 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME = so_long.a
 INCLUDES = so_long.h
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address #-02
+CFLAGS = -Wall -Werror -Wextra
 
 RESOURCES_PATH = ./resources
 RESOURCES =		main.c\
@@ -25,6 +25,7 @@ RESOURCES =		main.c\
 				readmap.c\
 				checkmap.c\
 				errorlist.c\
+				start_game.c\
 
 # ****************************** CREACION OBJECTS ***************************** #
 
