@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/01 20:50:17 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:34:51 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,40 +114,40 @@ void check_points(t_map *map)
 
 
 
-void ft_floodfill(t_map *struct_map, int x, int y)
+void ft_floodfill(t_map *map, int x, int y)
 {
     // Verificar si las coordenadas (x, y) están fuera del mapa o en una posición no válida ('1' o 'X')
-    if (x >= struct_map->cols || y >= struct_map->rows || x < 0 || y < 0 || struct_map->data[y][x] == '1' || struct_map->data[y][x] == 'X')
+    if (x >= map->cols || y >= map->rows || x < 0 || y < 0 || map->data[y][x] == '1' || map->data[y][x] == 'X')
         return;
     else
     {
         // Marcar la posición actual con 'X' para indicar que ha sido visitada
-        struct_map->data[y][x] = 'X';
+        map->data[y][x] = 'X';
         
         // Llamadas recursivas a ft_floodfill para explorar las celdas adyacentes
-        ft_floodfill(struct_map, x + 1, y); // Derecha
-        ft_floodfill(struct_map, x - 1, y); // Izquierda
-        ft_floodfill(struct_map, x, y + 1); // Abajo
-        ft_floodfill(struct_map, x, y - 1); // Arriba
+        ft_floodfill(map, x + 1, y); // Derecha
+        ft_floodfill(map, x - 1, y); // Izquierda
+        ft_floodfill(map, x, y + 1); // Abajo
+        ft_floodfill(map, x, y - 1); // Arriba
     }
     return;
 }
 
 
-int is_map_passable(t_map *struct_map)
+int is_map_passable(t_map *map)
 {
     int y;
     int x;
     
     y = 0; // Inicializa la variable y para recorrer las filas.
-    while (y < struct_map->rows) // Bucle externo para recorrer las filas.
+    while (y < map->rows) // Bucle externo para recorrer las filas.
     {
         x = 0; // Inicializa la variable x para recorrer las columnas.
-        while (x < struct_map->cols) // Bucle interno para recorrer las columnas.
+        while (x < map->cols) // Bucle interno para recorrer las columnas.
         {
-            if (struct_map->data[y][x] != '1' && struct_map->data[y][x] != 'X') // Comprueba si el carácter no es '1' ni 'X'.
+            if (map->data[y][x] != '1' && map->data[y][x] != 'X') // Comprueba si el carácter no es '1' ni 'X'.
             {
-                ft_lst_perror(PLAYER_CANNOT_REACH_EXIT, struct_map); // Muestra un mensaje de error.
+                ft_lst_perror(PLAYER_CANNOT_REACH_EXIT, map); // Muestra un mensaje de error.
                 return 0; // Devuelve 0 para indicar que el mapa no es transitable.
             }
             x++; // Incrementa x para pasar al siguiente carácter en la fila.

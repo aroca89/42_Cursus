@@ -6,11 +6,12 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:48 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/03 18:31:37 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/04 21:19:27 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+#include "../libft_42/libft.h"
 #include <stdlib.h> // Para EXIT_FAILURE y EXIT_SUCCESS
 
 #include  "../minilibx_opengl/mlx.h"
@@ -30,7 +31,8 @@ int main(int argc, char *argv[])
         if(is_map_passable(map_copy) == 1)
             printf("%s", "EL MAPA ES PASABLE");
             
-        window_init((void *)map);
+        t_render *render =  window_init(map);
+        read_map(map, render);
     
         return EXIT_SUCCESS; // Terminar con éxito;
     }
