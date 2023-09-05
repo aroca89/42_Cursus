@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/04 21:06:25 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:53:27 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,15 @@ typedef struct s_img
 
 typedef struct s_render
 {
-    t_img   *img;
     void    *mlx;
     void    *mlx_win;
+    int     resolution;
 }           t_render;
 
 typedef struct s_map
 {
+    t_render    *render;
+    t_img       *img;
     int         rows;
     int         cols;
     int         collectibles;
@@ -55,7 +57,7 @@ typedef struct s_map
     char        **data;
 }               t_map;
 
-t_map *convert_maps(const char *filename);
+void convert_maps(const char *filename, t_map *map);
 void check_argument(char *argv[]);
 int main(int argc, char *argv[]);
 void print_map(t_map *map);
@@ -69,9 +71,9 @@ int is_map_passable(t_map *map);
 t_map *copy_map(t_map *map);
 
 void ft_mlx_perror(int type);
-t_render *window_init(t_map *map);
-void render_sprites(t_render *render);
-void read_map(t_map *map, t_render *render);
+void window_init(t_map *map);
+void render_sprites(t_map *map);
+void render_map(t_map *map);
 
 
 

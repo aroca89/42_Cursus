@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:04:10 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/04 18:35:30 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:43:13 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static char **read_lines(const char *filename, int num_lines)
 }
 
 
-t_map *convert_maps(const char *filename)
+void convert_maps(const char *filename, t_map *map)
 {
     // Obtener el número de líneas en el archivo
     int num_lines; 
@@ -84,16 +84,12 @@ t_map *convert_maps(const char *filename)
     // Leer las líneas del archivo y almacenarlas en un arreglo bidimensional
     char **map_data = read_lines(filename, num_lines);
     
-    // Reservar memoria para una estructura de tipo t_map y asignarla a 'map'
-    t_map *map = (t_map *)ft_calloc(1, sizeof(t_map));
-    if (!map)
-        ft_lst_perror(MALLOC_ERROR, map);
+    
     
     // Asignar el arreglo bidimensional 'map_data' al campo 'data' de la estructura 'map'
     map->data = map_data;
     
     // Devolver el puntero a la estructura t_map que contiene los datos del mapa
-    return map;
 }
 
 
