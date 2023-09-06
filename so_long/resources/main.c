@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:48 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/05 20:13:21 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/05 22:02:51 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_map	*ft_init_struct(void)
 	// map->exit = 0;
 	// map->character_position_row = 0;
     // map->character_position_col = 0;
-	 map->render->resolution = 1080;
+	 map->render->resolution = 64;
      return map;
  }
 

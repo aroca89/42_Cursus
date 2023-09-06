@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 16:18:44 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/05 19:53:44 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:37:46 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void window_init(t_map *map)
         ft_mlx_perror(2); // Manejar errores si mlx_init falla
 
     // Crear una nueva ventana de MLX con dimensiones 500x300 y título "So_Long"
-    mlx_win = mlx_new_window(mlx, 700, 500, "So_Long");
+    mlx_win = mlx_new_window(mlx, map->cols * map->render->resolution, map->rows * map->render->resolution, "So_Long");
     if (!mlx_win)
         ft_mlx_perror(3); // Manejar errores si mlx_new_window falla
     
@@ -81,21 +81,21 @@ void render_map(t_map *map)
     while (y < map->rows)
     {
         x = 0;
-        character = map->data[y][x];
+        
         while(x < map->cols)
         {
-            //printf("Character at (%d, %d) is '%c'\n", y * resolution, x * resolution, character);
+            character = map->data[y][x];
+            printf("Character at (%d, %d) is '%c'\n", y * resolution, x * resolution, character);
             resolution = map->render->resolution;
-            if(character == '0')
-                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->background, y * resolution, x * resolution);
-            else if (character == '1')
-                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->wall, y * resolution, x * resolution);
+            mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->background, x * resolution, y * resolution);
+            if (character == '1')
+                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->wall, x * resolution, y * resolution);
             else if (character == 'P')
-                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->player, y * resolution, x * resolution);
+                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->player, x * resolution, y * resolution);
             else if (character == 'E')
-                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->exit, y * resolution, x * resolution);
+                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->exit, x * resolution, y * resolution);
             else if (character == 'C')
-                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->collectibles, y * resolution, x * resolution);
+                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->collectibles, x * resolution, y * resolution);
             x++;
         }
          y++; 

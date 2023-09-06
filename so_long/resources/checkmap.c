@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/04 18:34:51 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:46:30 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int is_map_passable(t_map *map)
         x = 0; // Inicializa la variable x para recorrer las columnas.
         while (x < map->cols) // Bucle interno para recorrer las columnas.
         {
-            if (map->data[y][x] != '1' && map->data[y][x] != 'X') // Comprueba si el carácter no es '1' ni 'X'.
+            if (map->data[y][x] != '1' && map->data[y][x] != 'X' && map->data[y][x] != '0')// Comprueba si el carácter no es '1' ni 'X'.
             {
                 ft_lst_perror(PLAYER_CANNOT_REACH_EXIT, map); // Muestra un mensaje de error.
                 return 0; // Devuelve 0 para indicar que el mapa no es transitable.
