@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:48 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/05 22:02:51 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:15:42 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int main(int argc, char *argv[])
             free_map(map_copy);
         }  
         window_init(map);
+
+        
     
        
         return EXIT_SUCCESS; // Terminar con éxito;

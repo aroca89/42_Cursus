@@ -6,7 +6,7 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 12:16:22 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/09/03 16:30:25 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/09/07 13:34:34 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ RESOURCES =		main.c\
 				checkmap.c\
 				errorlist.c\
 				start_game.c\
+				movement.c\
 
 # ****************************** CREACION OBJECTS ***************************** #
 

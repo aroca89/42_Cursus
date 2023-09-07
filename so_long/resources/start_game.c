@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 16:18:44 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/06 18:37:46 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:29:54 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void window_init(t_map *map)
     render_map(map);
     printf("%s", "ESTOY AQUI\n");
     
-    
+    conect_hook(map);
     // Iniciar el bucle principal de MLX
     mlx_loop(mlx);
 
@@ -85,7 +85,7 @@ void render_map(t_map *map)
         while(x < map->cols)
         {
             character = map->data[y][x];
-            printf("Character at (%d, %d) is '%c'\n", y * resolution, x * resolution, character);
+            //printf("Character at (%d, %d) is '%c'\n", y * resolution, x * resolution, character);
             resolution = map->render->resolution;
             mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->background, x * resolution, y * resolution);
             if (character == '1')

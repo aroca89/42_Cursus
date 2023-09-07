@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/05 18:53:27 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/07 13:38:20 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void ft_mlx_perror(int type);
 void window_init(t_map *map);
 void render_sprites(t_map *map);
 void render_map(t_map *map);
+
+void conect_hook(t_map *map);
+int	key_hook(int keycode, t_map *map);
 
 
 
