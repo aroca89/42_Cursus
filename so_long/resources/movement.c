@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:27:07 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/07 15:20:50 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/07 16:13:06 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,40 @@ int key_hook(int keycode, t_map *map)
 void move_player(t_map *map, int new_col, int new_row)
 {
     // Verifica si la nueva posición es válida antes de mover al jugador
-    if (map->data[new_col][new_col] == 'E')
+    
+    if (map->data[new_col][new_row] != '1') 
     {
-        // Cerrar la ventana y salir de la aplicación
-        mlx_destroy_window(map->render->mlx, map->render->mlx_win);
-        exit(EXIT_SUCCESS);
-    }
-    else if (map->data[new_col][new_row] != '1') {
         // Borra la posición anterior del jugador en la matriz de datos
         map->data[map->character_position_col][map->character_position_row] = '0';
 
         // Actualiza la posición del jugador
         map->character_position_col = new_col;
         map->character_position_row = new_row;
+        
 
+        if (map->data[map->character_position_col][map->character_position_row] == 'P')
+        {
+            map->collectibles -= 1;
+            
+        }
+        // Verifica si el jugador ha alcanzado la salida ('E')
+        if (map->data[map->character_position_col][map->character_position_row] == 'E' && map->collectibles == 0)
+        {
+            // Cerrar la ventana y salir de la aplicación
+            mlx_destroy_window(map->render->mlx, map->render->mlx_win);
+            exit(EXIT_SUCCESS);
+        }
         // Dibuja al jugador en la nueva posición
         map->data[new_col][new_row] = 'P';
+        
+        
+        printf("colecionables = %d", map->collectibles);
 
         // Vuelve a renderizar la ventana con la nueva posición del jugador
         render_map(map);
+        
+        
+        
     }
     
 }

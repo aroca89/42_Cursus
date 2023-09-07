@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 16:18:44 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/07 14:40:31 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:55:28 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,30 @@ void window_init(t_map *map)
     if (!mlx)
         ft_mlx_perror(2); // Manejar errores si mlx_init falla
 
-    // Crear una nueva ventana de MLX con dimensiones 500x300 y título "So_Long"
+    // Crear una nueva ventana de MLX con dimensiones y título
     mlx_win = mlx_new_window(mlx, map->cols * map->render->resolution, map->rows * map->render->resolution, "So_Long");
     if (!mlx_win)
         ft_mlx_perror(3); // Manejar errores si mlx_new_window falla
-    
+
     // Asignar los valores de mlx y mlx_win a la estructura de renderizado
     map->render->mlx = mlx;
     map->render->mlx_win = mlx_win;
-    
+
     // Llamar a la función para renderizar sprites
     render_sprites(map);
-    
+
+    // Renderizar el mapa inicial
     render_map(map);
-    printf("%s", "ESTOY AQUI\n");
-    
+
+    // Configurar el manejo de eventos de teclado
     mlx_key_hook(map->render->mlx_win, key_hook, map);
+
     // Iniciar el bucle principal de MLX
     mlx_loop(mlx);
 
     return;
 }
+
 
 void render_sprites(t_map *map)
 {
