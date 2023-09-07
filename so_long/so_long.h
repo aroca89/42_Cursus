@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/07 13:38:20 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:59:04 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void window_init(t_map *map);
 void render_sprites(t_map *map);
 void render_map(t_map *map);
 
-void conect_hook(t_map *map);
+void move_player(t_map *map, int new_col, int new_row);
 int	key_hook(int keycode, t_map *map);
 
 
