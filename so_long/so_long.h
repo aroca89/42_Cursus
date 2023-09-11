@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/07 14:59:04 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:48:34 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_map
     t_img       *img;
     int         rows;
     int         cols;
+    int         movements;
     int         collectibles;
     int         exit;
     int         place_start;

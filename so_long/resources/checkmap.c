@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 20:26:13 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/06 18:46:30 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:24:37 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@ void check_points(t_map *map)
             if (pixel == 'P')
             {
                 map->place_start++;
-                map->character_position_row = y; // Asignar la fila actual
-                map->character_position_col = x; // Asignar la columna actual
+                map->character_position_row = x; // Asignar la fila actual
+                map->character_position_col = y; // Asignar la columna actual
+                printf("Y == %d, X == %d\n", map->character_position_row, map->character_position_col);
             }
             if (pixel == 'E')
                 map->exit++;
