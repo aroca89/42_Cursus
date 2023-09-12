@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/11 19:48:34 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:34:48 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void ft_lst_perror(int type, t_map *map);
 int is_map_passable(t_map *map);
 t_map *copy_map(t_map *map);
 
-void ft_mlx_perror(int type);
+void ft_mlx_perror(int type, t_map *map);
 void window_init(t_map *map);
 void render_sprites(t_map *map);
 void render_map(t_map *map);

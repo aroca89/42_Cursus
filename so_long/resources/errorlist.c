@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:22:36 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/03 18:55:51 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:07:35 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,29 @@ void ft_lst_perror(int type, t_map *map)
     exit(-1);
 }
 
-void ft_mlx_perror(int type)
+void ft_mlx_perror(int type, t_map *map)
 {
     // Comprobar el tipo de error y mostrar el mensaje correspondiente
     if (type == 1)
-        perror("Wrong number of arguments.\n");
-    else if (type == 2)
         perror("Error\nMinilibx not found\n");
-    else if (type == 3)
+    else if (type == 2)
         perror("Error\nwindow not found\n");
-    else if (type == 4)
-        perror("Error\nMalloc Fail\n");
-    else if (type == 5)
+    else if (type == 3)
         perror("Error\nSprite not load\n");
-
+    else if (type == 4)
+        perror("Error\nLoading background texture\n");
+    else if (type == 5)
+        perror("Error\nloading collectible textures.\n");
+    else if (type == 6)
+        perror("Error\nloading the exit texture.\n");
+    else if (type == 7)
+        perror("Error\nloading player texture.\n");
+    else if (type == 8)
+        perror("Error\nloading the walls texture.\n");
+        
+    // Liberar la memoria asignada al mapa
+    free_map(map);
+    
     // Salir del programa con un código de error
     exit(-1);
 }

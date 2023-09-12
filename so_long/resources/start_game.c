@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 16:18:44 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/07 15:55:28 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:51:36 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void window_init(t_map *map)
 
     mlx = mlx_init();
     if (!mlx)
-        ft_mlx_perror(2); // Manejar errores si mlx_init falla
+        ft_mlx_perror(1, map); // Manejar errores si mlx_init falla
 
     // Crear una nueva ventana de MLX con dimensiones y título
     mlx_win = mlx_new_window(mlx, map->cols * map->render->resolution, map->rows * map->render->resolution, "So_Long");
     if (!mlx_win)
-        ft_mlx_perror(3); // Manejar errores si mlx_new_window falla
+        ft_mlx_perror(1, map); // Manejar errores si mlx_new_window falla
 
     // Asignar los valores de mlx y mlx_win a la estructura de renderizado
     map->render->mlx = mlx;
@@ -41,6 +41,7 @@ void window_init(t_map *map)
 
     // Configurar el manejo de eventos de teclado
     mlx_key_hook(map->render->mlx_win, key_hook, map);
+    mlx_hook(map->render->mlx_win, 17, 0, (void *)exit, map);
 
     // Iniciar el bucle principal de MLX
     mlx_loop(mlx);
@@ -57,19 +58,19 @@ void render_sprites(t_map *map)
     // Cargar las imágenes desde archivos XPM y asignarlas a la estructura de imágenes
     map->img->background = mlx_xpm_file_to_image(map->render->mlx, "textures/backgroun.xpm", &img_size, &img_size);
     if (!map->img->background)
-        perror("Error cargando la textura de fondo.\n");
+        ft_mlx_perror(4, map);
     map->img->collectibles = mlx_xpm_file_to_image(map->render->mlx, "textures/collectibles.xpm", &img_size, &img_size);
     if (!map->img->collectibles)
-        perror("Error cargando la texturas de coleccionables.\n");
+        ft_mlx_perror(5, map);
     map->img->exit = mlx_xpm_file_to_image(map->render->mlx, "textures/exit.xpm", &img_size, &img_size);
     if (!map->img->exit)
-        perror("Error cargando la textura de la exit.\n");
+        ft_mlx_perror(6, map);
     map->img->player = mlx_xpm_file_to_image(map->render->mlx, "textures/player.xpm", &img_size, &img_size);
     if (!map->img->player)
-        perror("Error cargando la textura de player.\n");
+        ft_mlx_perror(7, map);
     map->img->wall = mlx_xpm_file_to_image(map->render->mlx, "textures/wall.xpm", &img_size, &img_size);
     if (!map->img->wall)
-        perror("Error cargando la textura de paredes.\n");
+        ft_mlx_perror(8, map);
 }
 
 void render_map(t_map *map)
@@ -96,7 +97,7 @@ void render_map(t_map *map)
             else if (character == 'P')
                 mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->player, x * resolution, y * resolution);
             else if (character == 'E')
-                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->exit, x * resolution, y * resolution);
+               mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->exit, x * resolution, y * resolution);
             else if (character == 'C')
                 mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->collectibles, x * resolution, y * resolution);
             x++;
