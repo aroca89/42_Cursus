@@ -6,13 +6,13 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:27:07 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/13 20:33:02 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:10:45 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx_opengl/mlx.h"
 #include "../so_long.h"
-#include "../ft_printf/ft_printf.h"
+#include "../libft_42/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,7 +23,6 @@ int key_hook(int keycode, t_map *map)
     {
         // Cerrar la ventana y salir de la aplicación
         mlx_destroy_window(map->render->mlx, map->render->mlx_win);
-        print_map(map);
         exit(EXIT_SUCCESS);
     }
     else if (keycode == 13 || keycode == 126) // Tecla arriba
