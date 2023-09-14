@@ -6,12 +6,12 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/12 20:48:47 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:17:25 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-# define SO_LONG_H 
+# define SO_LONG_H
 
 # include <stdio.h>
 
@@ -30,58 +30,55 @@
 typedef struct s_img
 {
 	void	*background;
-    void    *collectibles;
-    void    *exit;
-    void    *player;
-    void    *wall;	
-}               t_img;
+	void	*collectibles;
+	void	*exit;
+	void	*player;
+	void	*wall;
+}			t_img;
 
 typedef struct s_render
 {
-    void    *mlx;
-    void    *mlx_win;
-    int     resolution;
-}           t_render;
+	void	*mlx;
+	void	*mlx_win;
+	int		resolution;
+}			t_render;
 
 typedef struct s_map
 {
-    t_render    *render;
-    t_img       *img;
-    int         rows;
-    int         cols;
-    int         movements;
-    int         collectibles;
-    int         exit;
-    int         place_start;
-    int         character_position_row;
-    int         character_position_col;
-    int         exit_position_row;
-    int         exit_position_col;
-    char        **data;
-}               t_map;
+	t_render	*render;
+	t_img		*img;
+	int			rows;
+	int			cols;
+	int			movements;
+	int			collectibles;
+	int			exit;
+	int			place_start;
+	int			character_position_row;
+	int			character_position_col;
+	int			exit_position_row;
+	int			exit_position_col;
+	char		**data;
+}				t_map;
 
-void convert_maps(const char *filename, t_map *map);
-void check_argument(char *argv[]);
-int main(int argc, char *argv[]);
-void print_map(t_map *map);
-void map_is_rectangular(t_map *map);
-void free_map(t_map *map);
-void map_closed(t_map *map);
-void check_points(t_map *map);
+void	convert_maps(const char *filename, t_map *map);
+void	check_argument(char *argv[]);
+int		main(int argc, char *argv[]);
+void	print_map(t_map *map);
+void	map_is_rectangular(t_map *map);
+void	free_map(t_map *map);
+void	map_closed(t_map *map);
+void	check_points(t_map *map);
 void	ft_floodfill(t_map *map, int x, int y);
-void ft_lst_perror(int type, t_map *map);
-int is_map_passable(t_map *map);
-t_map *copy_map(t_map *map);
+void	ft_lst_perror(int type, t_map *map);
+int		is_map_passable(t_map *map);
+t_map	*copy_map(t_map *map);
 
-void ft_mlx_perror(int type, t_map *map);
-void window_init(t_map *map);
-void render_sprites(t_map *map);
-void render_map(t_map *map);
+void	ft_mlx_perror(int type, t_map *map);
+void	window_init(t_map *map);
+void	render_sprites(t_map *map);
+void	render_map(t_map *map);
 
-void move_player(t_map *map, int new_col, int new_row);
-int	key_hook(int keycode, t_map *map);
-
-
-
+void	move_player(t_map *map, int new_col, int new_row);
+int		key_hook(int keycode, t_map *map);
 
 #endif

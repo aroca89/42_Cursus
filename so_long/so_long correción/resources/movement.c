@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:27:07 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/13 21:10:45 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/14 21:38:55 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,75 +16,78 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int key_hook(int keycode, t_map *map)
+int	key_hook(int keycode, t_map *map)
 {
-    // Mover al jugador según la tecla presionada
-    if (keycode == 53)
-    {
-        // Cerrar la ventana y salir de la aplicación
-        mlx_destroy_window(map->render->mlx, map->render->mlx_win);
-        exit(EXIT_SUCCESS);
-    }
-    else if (keycode == 13 || keycode == 126) // Tecla arriba
-    {
-        move_player(map, map->character_position_col - 1, map->character_position_row);
-    }
-    else if (keycode == 1 || keycode == 125) // Tecla abajo
-    {
-        move_player(map, map->character_position_col + 1, map->character_position_row);
-    }
-    else if (keycode == 0 || keycode == 123) // Tecla izquierda
-    {
-        move_player(map, map->character_position_col, map->character_position_row - 1);
-    }
-    else if (keycode == 2 || keycode == 124) // Tecla derecha
-    {
-        move_player(map, map->character_position_col, map->character_position_row + 1);
-    }
+	int max_offset_x = (map->cols - 1) * map->render->resolution - map->render->window_width;
+	int max_offset_y = map->rows * map->render->resolution - map->render->window_height;
 
-
-    return (0);
+	if (keycode == 53)
+	{
+		mlx_destroy_window(map->render->mlx, map->render->mlx_win);
+		exit(EXIT_SUCCESS);
+	}
+	else if (keycode == 13 || keycode == 126)
+	{
+		if (move_player(map, map->character_y - 1, map->character_x))
+		{
+			if (map->render->map_offset_y > 0)
+				map->render->map_offset_y -= 1;
+		}
+	}
+	else if (keycode == 1 || keycode == 125)
+	{
+		if (move_player(map, map->character_y + 1, map->character_x))
+		{
+			if (map->render->map_offset_y < max_offset_y)
+				map->render->map_offset_y += 1;
+		}
+	}
+	else if (keycode == 0 || keycode == 123)
+	{
+		if (move_player(map, map->character_y, map->character_x - 1))
+		{
+			if (map->render->map_offset_x > 0)
+				map->render->map_offset_x -= 1;
+		}
+	}
+	else if (keycode == 2 || keycode == 124)
+	{
+		if (move_player(map, map->character_y, map->character_x + 1))
+		{
+			if (map->render->map_offset_x < max_offset_x)
+				map->render->map_offset_x += 1;
+		}
+	}
+	return (0);
 }
 
-void move_player(t_map *map, int new_col, int new_row)
+
+int	move_player(t_map *map, int new_row, int new_col)
 {
-    // Verifica si la nueva posición es válida antes de mover al jugador
-    if (map->data[new_col][new_row] != '1') 
-    {
-        // Incrementa el contador de movimientos
-        map->movements++;
-        ft_printf("Movements >> %d\n", map->movements);
+	if (new_row >= 0 && new_row < map->rows && new_col >= 0 && new_col < map->cols)
+	{
+		if (map->data[new_row][new_col] != '1')
+		{
+			map->movements++;
+			map->data[map->character_y][map->character_x] = '0';
+			map->character_x = new_col;
+			map->character_y = new_row;
+			if (map->data[map->character_y][map->character_x] == 'C')
+			{
+				map->collectibles--;
+			}
+			map->data[new_row][new_col] = 'P';
+			map->data[map->exit_y][map->exit_x] = 'E';
 
-        // Borra la posición anterior del jugador en la matriz de datos
-        map->data[map->character_position_col][map->character_position_row] = '0';
-
-        // Actualiza la posición del jugador
-        map->character_position_col = new_col;
-        map->character_position_row = new_row;
-        
-        // Verifica si la nueva posición contiene un coleccionable ('C')
-        if(map->data[map->character_position_col][map->character_position_row] == 'C')
-        {
-            // Reduce el contador de coleccionables
-            map->collectibles -= 1;
-            printf("colecionables = %d\n", map->collectibles);   
-        }
-        
-        // Dibuja al jugador en la nueva posición
-        map->data[new_col][new_row] = 'P';
-        
-        // Restaura la posición de la salida ('E') en su ubicación original
-        map->data[map->exit_position_col][map->exit_position_row] = 'E';
-        
-        // Vuelve a renderizar la ventana con la nueva posición del jugador y la salida
-        render_map(map);
-
-        // Verifica si se han recogido todos los coleccionables y el jugador está en la salida
-        if(map->collectibles == 0 && map->data[map->character_position_col][map->character_position_row] == 'E')
-        {
-            // Cerrar la ventana y salir de la aplicación
-            mlx_destroy_window(map->render->mlx, map->render->mlx_win);
-            exit(EXIT_SUCCESS);
-        }
-    }
+			render_map(map);
+			if (map->collectibles == 0 && map->data[map->character_y][map->character_x] == 'E')
+			{
+				mlx_destroy_window(map->render->mlx, map->render->mlx_win);
+				exit(EXIT_SUCCESS);
+			}
+			
+		}
+	}
+	return 1;
 }
+
