@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/14 21:09:06 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:28:34 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_render
 	int		window_height;
 	int		map_offset_x;
 	int		map_offset_y;
+	int		max_offset_x;
+	int		max_offset_y;
 }			t_render;
 
 typedef struct s_map
@@ -82,6 +84,6 @@ void	window_init(t_map *map);
 void	render_sprites(t_map *map);
 void	render_map(t_map *map);
 
-int	move_player(t_map *map, int new_col, int new_row);
+void	move_player(t_map *map, int new_col, int new_row, int keycode);
 int		key_hook(int keycode, t_map *map);
 #endif
