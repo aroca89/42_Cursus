@@ -6,13 +6,14 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 16:18:44 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/14 20:37:08 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/18 22:52:29 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_42/libft.h"
 #include  "../minilibx_opengl/mlx.h"
 #include "../so_long.h"
+#include <math.h>
 
 void	window_init(t_map *map)
 {
@@ -30,7 +31,7 @@ map->render->window_height, "So_Long");
 	map->render->mlx_win = mlx_win;
 	render_sprites(map);
 	render_map(map);
-	mlx_key_hook(map->render->mlx_win, key_hook, map);
+	mlx_hook(map->render->mlx_win, 2, 0, key_hook, map);
 	mlx_hook(map->render->mlx_win, 17, 0, (void *)exit, map);
 	return ;
 }
@@ -82,30 +83,33 @@ void	static	select_put_img(t_map *map, int render_x, int render_y, char c)
 	map->img->player, render_x, render_y);
 }
 
-void render_map(t_map *map)
+void	render_map(t_map *map)
 {
-	int render_x;
-	int render_y;
-	char character;
-	int x;
-	int y;
+	int		render_x;
+	int		render_y;
+	char	character;
+	int		x;
+	int		y;
 
-	y = map->render->map_offset_y;
-	while (y < map->rows && y - map->render->map_offset_y < map->render->window_height)
-	{
-		x = map->render->map_offset_x;
-		while (x < map->cols && x - map->render->map_offset_x < map->render->window_width)
-		{
-			render_x = (x - map->render->map_offset_x) * map->render->resolution;
-			render_y = (y - map->render->map_offset_y) * map->render->resolution;
-			if (render_x >= 0 && render_x < map->render->window_width && render_y >= 0 && render_y < map->render->window_height)
-			{
-				mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->background, render_x, render_y);
-				character = map->data[y][x];
-				select_put_img(map, render_x, render_y, character);
-			}
-			x++;
-		}
-		y++;
-	}
+    y = fmax(0, (map->character_y - map->render->window_width / \
+	(2 * map->render->resolution)));
+    while (y < fmin(map->rows, fmax(0, (map->character_y - \
+	map->render->window_height / (2 * map->render->resolution))) + \
+	map->render->window_height / map->render->resolution))
+    {
+        x = fmax(0, (map->character_x - map->render->window_width / (2 * map->render->resolution)));
+        while (x < fmin(map->cols , fmax(0, (map->character_x - map->render->window_width / (2 * map->render->resolution))) + map->render->window_width / map->render->resolution))
+        {
+            render_x = (x - fmax(0, (map->character_x - map->render->window_width / (2 * map->render->resolution)))) * map->render->resolution;
+            render_y = (y - fmax(0, (map->character_y - map->render->window_width / (2 * map->render->resolution)))) * map->render->resolution;
+            if (render_x >= 0 && render_x < map->render->window_width && render_y >= 0 && render_y < map->render->window_height)
+            {
+                mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->background, render_x, render_y);
+                character = map->data[y][x];
+                select_put_img(map, render_x, render_y, character);
+            }
+            x++;
+        }
+        y++;
+    }
 }

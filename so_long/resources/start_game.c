@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 16:18:44 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/13 20:41:34 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:08:31 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,6 @@ void render_map(t_map *map)
     char character;
     int resolution;
 
-    // Obtener las dimensiones de la ventana
-    int window_width = map->cols * map->render->resolution;
-    int window_height = map->rows * map->render->resolution;
-
     y = 0;
     while (y < map->rows)
     {
@@ -98,7 +94,7 @@ void render_map(t_map *map)
             int render_y = y * resolution;
 
             // Comprueba si el elemento está dentro de los límites de la ventana
-            if (render_x >= 0 && render_x < window_width && render_y >= 0 && render_y < window_height)
+            if (render_x >= 0 && render_x < map->render->window_width && render_y >= 0 && render_y < map->render->window_height)
             {
                 // Renderiza el elemento solo si está dentro de la ventana
 
@@ -140,6 +136,55 @@ void render_map(t_map *map)
 }
 
 
+// void render_map(t_map *map)
+// {
+//     int render_x;       // Coordenada X en la ventana de renderización
+//     int render_y;       // Coordenada Y en la ventana de renderización
+//     char character;     // Carácter actual en los datos del mapa
+//     int x;              // Índice de columna en los datos del mapa
+//     int y;              // Índice de fila en los datos del mapa
+
+//     // Calcula el punto de inicio para la renderización basado en la posición del jugador
+//     int start_x = map->character_x - map->render->window_width / (2 * map->render->resolution);
+//     int start_y = map->character_y - map->render->window_height / (2 * map->render->resolution);
+	
+//     // Asegura que las coordenadas de inicio no sean menores que 0
+//     start_x = fmax(0, start_x);
+//     start_y = fmax(0, start_y);
+
+//     // Calcula el punto de finalización para la renderización
+//     int end_x = start_x + map->render->window_width / map->render->resolution;
+//     int end_y = start_y + map->render->window_height / map->render->resolution;
+
+//     // Asegura que las coordenadas de finalización no superen los límites del mapa
+//     end_x = fmin(map->cols, end_x);
+//     end_y = fmin(map->rows, end_y);
+
+//     // Bucle para iterar a través de las filas desde start_y hasta end_y
+//     y = start_y;
+//     while (y < end_y)
+//     {
+//         // Bucle para iterar a través de las columnas desde start_x hasta end_x
+//         x = start_x;
+//         while (x < end_x)
+//         {
+//             // Calcula las coordenadas de renderización en la ventana
+//             render_x = (x - start_x) * map->render->resolution;
+//             render_y = (y - start_y) * map->render->resolution;
+
+//             // Verifica que las coordenadas estén dentro de los límites de la ventana
+//             if (render_x >= 0 && render_x < map->render->window_width && render_y >= 0 && render_y < map->render->window_height)
+//             {
+//                 // Renderiza el fondo y el carácter en la posición actual
+//                 mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->background, render_x, render_y);
+//                 character = map->data[y][x];
+//                 select_put_img(map, render_x, render_y, character);
+//             }
+//             x++;
+//         }
+//         y++;
+//     }
+// }
 
 
 
