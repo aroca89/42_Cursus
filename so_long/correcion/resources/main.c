@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:48 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/19 10:17:58 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:14:18 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,18 @@ static void	ft_init_struct_render(t_map *map)
 	map->render->resolution = 64;
 	map->render->window_width = map->render->resolution * 8;
 	map->render->window_height = map->render->resolution * 6;
-	map->render->map_offset_y = 0;
-	map->render->map_offset_x = 0;
+	map->render->map_offset_y = map->rows - map->render->window_height / \
+map->render->resolution;
+	map->render->map_offset_x = map->cols - map->render->window_width / \
+map->render->resolution;
 	map->render->max_offset_x = map->render->map_offset_x * \
-map->render->resolution - map->render->window_width;
+map->render->resolution;
 	map->render->max_offset_y = map->render->map_offset_y * \
-map->render->resolution - map->render->window_height;
+map->render->resolution;
+}
+
+void	ft_init_struct_img(t_map *map)
+{
 	map->img = (t_img *)calloc(1, sizeof(t_img));
 	if (!map->img)
 		ft_lst_perror(MALLOC_ERROR, map);

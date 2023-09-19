@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:27:07 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/19 10:51:02 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:23:09 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ new_col >= 0 && new_col < map->cols)
 			map->data[new_row][new_col] = 'P';
 			map->data[map->exit_y][map->exit_x] = 'E';
 			move_screen(keycode, map);
-			cal_render(map);
+			render_map(map);
 			if (map->collectibles == 0 && \
 		map->data[map->character_y][map->character_x] == 'E')
 			{
