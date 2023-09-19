@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:27:07 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/19 10:51:02 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:13:26 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,43 +24,17 @@ int	key_hook(int keycode, t_map *map)
 		exit(EXIT_SUCCESS);
 	}
 	else if (keycode == 13 || keycode == 126)
-		move_player(map, map->character_y - 1, map->character_x, keycode);
+		move_player(map, map->character_y - 1, map->character_x);
 	else if (keycode == 1 || keycode == 125)
-		move_player(map, map->character_y + 1, map->character_x, keycode);
+		move_player(map, map->character_y + 1, map->character_x);
 	else if (keycode == 0 || keycode == 123)
-		move_player(map, map->character_y, map->character_x - 1, keycode);
+		move_player(map, map->character_y, map->character_x - 1);
 	else if (keycode == 2 || keycode == 124)
-		move_player(map, map->character_y, map->character_x + 1, keycode);
+		move_player(map, map->character_y, map->character_x + 1);
 	return (0);
 }
 
-static void	move_screen(int keycode, t_map *map)
-{
-	if (keycode == 13 || keycode == 126)
-	{
-		if (map->render->map_offset_y > 0)
-			map->render->map_offset_y -= 1;
-	}
-	else if (keycode == 1 || keycode == 125)
-	{
-		if (map->render->map_offset_y * map->render->resolution < \
-	map->render->max_offset_y)
-			map->render->map_offset_y += 1;
-	}
-	else if (keycode == 0 || keycode == 123)
-	{
-		if (map->render->map_offset_x > 0)
-			map->render->map_offset_x -= 1;
-	}
-	else if (keycode == 2 || keycode == 124)
-	{
-		if (map->render->map_offset_x * map->render->resolution < \
-	map->render->max_offset_x)
-			map->render->map_offset_x += 1;
-	}
-}
-
-void	move_player(t_map *map, int new_row, int new_col, int keycode)
+void	move_player(t_map *map, int new_row, int new_col)
 {
 	if (new_row >= 0 && new_row < map->rows && \
 new_col >= 0 && new_col < map->cols)
@@ -76,7 +50,6 @@ new_col >= 0 && new_col < map->cols)
 				map->collectibles--;
 			map->data[new_row][new_col] = 'P';
 			map->data[map->exit_y][map->exit_x] = 'E';
-			move_screen(keycode, map);
 			cal_render(map);
 			if (map->collectibles == 0 && \
 		map->data[map->character_y][map->character_x] == 'E')
