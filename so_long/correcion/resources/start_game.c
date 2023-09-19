@@ -6,22 +6,13 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 16:18:44 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/19 15:14:26 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:02:23 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft_42/libft.h"
 #include  "../minilibx_opengl/mlx.h"
 #include "../so_long.h"
-#include <math.h>
-
-static void	calculate_initial_position(t_map *map)
-{
-	if (map->render->map_offset_x > map->render->max_offset_x)
-		map->render->map_offset_x = map->render->max_offset_x;
-	if (map->render->map_offset_y > map->render->max_offset_y)
-		map->render->map_offset_y = map->render->max_offset_y;
-}
 
 void	window_init(t_map *map)
 {
@@ -37,7 +28,10 @@ map->render->window_height, "So_Long");
 		ft_mlx_perror(1, map);
 	map->render->mlx = mlx;
 	map->render->mlx_win = mlx_win;
-	calculate_initial_position(map);
+	if (map->render->map_offset_x > map->render->max_offset_x)
+		map->render->map_offset_x = map->render->max_offset_x;
+	if (map->render->map_offset_y > map->render->max_offset_y)
+		map->render->map_offset_y = map->render->max_offset_y;
 	render_sprites(map);
 	render_map(map);
 	mlx_hook(map->render->mlx_win, 2, 0, key_hook, map);
@@ -72,7 +66,7 @@ void	render_sprites(t_map *map)
 		ft_mlx_perror(8, map);
 }
 
-void	static	select_put_img(t_map *map, int render_x, int render_y, char c)
+static void	select_put_img(t_map *map, int render_x, int render_y, char c)
 {
 	if (c == '1')
 		mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, \
@@ -93,30 +87,40 @@ void	static	select_put_img(t_map *map, int render_x, int render_y, char c)
 	map->img->player, render_x, render_y);
 }
 
-void	render_map(t_map *map)
+static void	check_window_limits(t_map *map, int x, int y)
 {
+	char	character;
 	int		render_x;
 	int		render_y;
-	char	character;
+
+	render_x = (x - map->render->map_offset_x) * \
+		map->render->resolution;
+	render_y = (y - map->render->map_offset_y) * \
+		map->render->resolution;
+	if (render_x >= 0 && render_x < map->render->window_width && render_y >= \
+0 && render_y < map->render->window_height)
+	{
+		mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, \
+	map->img->background, render_x, render_y);
+		character = map->data[y][x];
+		select_put_img(map, render_x, render_y, character);
+	}	
+}
+
+void	render_map(t_map *map)
+{	
 	int		x;
 	int		y;
 
 	y = map->render->map_offset_y;
-	while (y < map->render->map_offset_y + map->render->window_height / map->render->resolution)
+	while (y < map->render->map_offset_y + map->render->window_height / \
+map->render->resolution)
 	{
 		x = map->render->map_offset_x;
-		while (x < map->render->map_offset_x + map->render->window_width / map->render->resolution)
+		while (x < map->render->map_offset_x + map->render->window_width / \
+	map->render->resolution)
 		{
-			render_x = (x - map->render->map_offset_x) * \
-		map->render->resolution;
-			render_y = (y - map->render->map_offset_y) * \
-		map->render->resolution;
-			if (render_x >= 0 && render_x < map->render->window_width && render_y >= 0 && render_y < map->render->window_height)
-			{
-				mlx_put_image_to_window(map->render->mlx, map->render->mlx_win, map->img->background, render_x, render_y);
-				character = map->data[y][x];
-				select_put_img(map, render_x, render_y, character);
-			}
+			check_window_limits(map, x, y);
 			x++;
 		}
 		y++;
