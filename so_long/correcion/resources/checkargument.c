@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 09:56:31 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/14 12:22:38 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:07:01 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_argument(char *argv[])
 		extension_len, extension, extension_len) != 0)
 		ft_lst_perror(INVALID_EXTENSION, NULL);
 	archivo = open(argv[1], O_RDONLY);
-	if (archivo == -1)
+	if (archivo == -1 || read(archivo, NULL, 1) == 0)
 		ft_lst_perror(INVALID_FILE, NULL);
 	close(archivo);
 }

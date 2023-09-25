@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 11:24:48 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/19 16:56:49 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:05:46 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	ft_init_struct_render(t_map *map)
 	map->render->mlx = NULL;
 	map->render->mlx_win = NULL;
 	map->render->resolution = 64;
-	map->render->window_width = map->render->resolution * 8;
-	map->render->window_height = map->render->resolution * 6;
+	map->render->window_width = map->render->resolution * map->cols;
+	map->render->window_height = map->render->resolution * map->rows;
 	map->render->map_offset_y = map->rows - map->render->window_height / \
 map->render->resolution;
 	map->render->map_offset_x = map->cols - map->render->window_width / \

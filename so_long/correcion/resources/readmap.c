@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 20:04:10 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/19 09:50:38 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:08:34 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,20 @@ static int	len_lines(const char *filename)
 {
 	int		fd;
 	int		num_lines;
+	char	*line;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		ft_lst_perror(INVALID_FILE, NULL);
 	num_lines = 0;
-	while (get_next_line(fd))
+	while (1)
+	{
+		line = get_next_line(fd);
 		num_lines++;
+		free(line);
+		if (line == NULL)
+			break ;
+	}
 	close(fd);
 	return (num_lines);
 }
