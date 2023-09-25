@@ -6,7 +6,7 @@
 /*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 12:27:07 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/09/25 11:03:48 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:49:33 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ new_col >= 0 && new_col < map->cols)
 		map->data[map->character_y][map->character_x] == 'E')
 			{
 				mlx_destroy_window(map->render->mlx, map->render->mlx_win);
-				system("leaks so_long");
 				exit(EXIT_SUCCESS);
 			}			
 		}
