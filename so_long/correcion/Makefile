@@ -6,7 +6,7 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 12:16:22 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/09/19 09:31:38 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/09/25 16:27:19 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,12 @@ MLX_A = -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 
 # ********************************* Reglas ************************************ #
 
-ALL: $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	make bonus -C $(LIBFT_PATH)
-	make -C $(MLX_PATH)
+	make -C $(MLX_PATH) 2> logs
+	rm -f logs
 	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT_A) $(PRINTF_A) $(GNL_A) $(MLX_A) -o $@ -lm
 
 clean:
@@ -64,7 +65,7 @@ fclean: clean
 	make clean -C $(MLX_PATH)
 	
 	
-re: fclean all 
+re: fclean all
 
 .PHONY: all clean fclean re debug sani noflags
 
@@ -93,7 +94,3 @@ title:
 	@echo "==============================================="
 	@echo "    Compilando el programa so_long             "
 	@echo "==============================================="
-
-# ************************ VARIABLES de depuracion *************************** #
-
-$(foreach v, $(.VARIABLES), $(if $(filter-out environment% default automatic, $(origin $v)), $(warning $v=$($v) ($(value $v)))))

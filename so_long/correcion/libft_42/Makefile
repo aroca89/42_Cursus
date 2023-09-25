@@ -6,7 +6,7 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 08:42:24 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/09/19 09:21:32 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/09/25 16:20:00 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INCLUDES = libft.h
 
 CC = gcc
 
-CFLAG = -Werror -Wall -Wextra -g
+CFLAGS = -Werror -Wall -Wextra -g
 
 SRC = ft_isalnum.c \
 	  ft_isalpha.c \
@@ -72,8 +72,9 @@ OBJ = $(SRC:.c=.o)
 
 BONUS_OBJ = $(SRC_BONUS:.c=.o)
 
-.o: %.c 
-	$(CC) -c $(CFLAG) $^
+%.o: %.c 
+	$(CC) $(CFLAGS)  -o $@ -c $<
+
 
 #######################################
 
