@@ -24,7 +24,7 @@ static void print_list(t_list *list)
     printf("\n");
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
 	t_list	*stack_A;
 

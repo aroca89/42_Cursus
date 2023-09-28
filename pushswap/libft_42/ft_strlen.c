@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aroca-pa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:51:52 by aroca-pa          #+#    #+#             */
-/*   Updated: 2022/09/21 19:14:07 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:20:40 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ size_t	ft_strlen(const char *s)
 	size_t	len;
 
 	len = 0;
-	while (s[len])
-		len++;
+	if (s)
+	{
+		while (s[len] != '\0')
+			len++;
+	}
 	return (len);
 }

@@ -13,9 +13,9 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft_42/libft.h"
+# include "./libft_42/libft.h"
 
-int		main(int argc, char **argv);
+int		main(int argc, char *argv[]);
 int		check_order(t_list **lst);
 void	onetwothree(t_list **lst);
 void	push(t_list **lstdst, t_list **head, char origin);
@@ -32,6 +32,6 @@ void    ft_isint(int nbr);
 int		checkerror(char **argv);
 t_list *startstack(int argc, char **argv);
 void	print_list(t_list *list);
-void	ift_duplicate(t_list **lst);
+void	ft_duplicate(t_list **lst);
 void	ft_isint(int nbr);
 #endif

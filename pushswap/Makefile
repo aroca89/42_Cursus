@@ -14,13 +14,11 @@
 
 # ********************************* VARIABLES ******************************** #
 NAME = push_swap
-INCLUDES = push_swap.h
+INCLUDES = ./push_swap.h
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address #-02
+CFLAGS = -Wall -Werror -Wextra -v #-02
 
 SRC_DIR = ./src
-OBJ_DIR = obj
-
 SRC = push_swap.c\
 	  push.c\
 	  rotate.c\
@@ -30,23 +28,27 @@ SRC = push_swap.c\
 	  main.c\
 	  onetwothree.c\
 
-# ********************************* VARIABLES ******************************** #
+# ****************************** CREACION OBJECTS ***************************** #
 
-LIBFT_DIR = libft_42
-LIBFT = $(LIBFT_DIR)/libft.a
-
-# ********************************* Reglas ************************************ #
-all: $(NAME)
-
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+OBJ_DIR = ./obj
+OBJECTS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT):
+# ********************************* VARIABLES ******************************** #
+
+LIBFT_DIR = ./libft_42
+LIBFT = $(LIBFT_DIR)/libft.a
+
+# ********************************* Reglas ************************************ #
+all: $(NAME)
+
+$(NAME): $(OBJECTS)
 	make bonus -C $(LIBFT_DIR)
+	rm -f logs
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -84,7 +86,7 @@ print-%:
 
 title:
 	@echo "==============================================="
-	@echo "    Compilando el programa push_swap             "
+	@echo "    Compilando el programa push_swap           "
 	@echo "==============================================="
 
 # ************************ VARIABLES de depuracion *************************** #

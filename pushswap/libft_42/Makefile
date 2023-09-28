@@ -6,7 +6,7 @@
 #    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 08:42:24 by aroca-pa          #+#    #+#              #
-#    Updated: 2022/09/23 17:49:20 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/09/25 16:20:00 by aroca-pa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INCLUDES = libft.h
 
 CC = gcc
 
-CFLAG = -Werror -Wall -Wextra -g
+CFLAGS = -Werror -Wall -Wextra -g
 
 SRC = ft_isalnum.c \
 	  ft_isalpha.c \
@@ -54,6 +54,8 @@ SRC = ft_isalnum.c \
 	  ft_strtrim.c\
 	  ft_split.c\
 	  ft_striteri.c\
+	  ft_printf.c\
+	  get_next_line.c\
 
 SRC_BONUS = ft_lstnew_bonus.c\
 			ft_lstadd_front_bonus.c\
@@ -70,8 +72,9 @@ OBJ = $(SRC:.c=.o)
 
 BONUS_OBJ = $(SRC_BONUS:.c=.o)
 
-.o: %.c 
-	$(CC) -c $(CFLAG) $^
+%.o: %.c 
+	$(CC) $(CFLAGS)  -o $@ -c $<
+
 
 #######################################
 

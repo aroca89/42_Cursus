@@ -44,8 +44,8 @@ static void	ft_init_struct_render(t_map *map)
 	map->render->mlx = NULL;
 	map->render->mlx_win = NULL;
 	map->render->resolution = 64;
-	map->render->window_width = map->render->resolution * map->cols;
-	map->render->window_height = map->render->resolution * map->rows;
+	map->render->window_width = map->render->resolution * 12;
+	map->render->window_height = map->render->resolution * 8;
 	map->render->map_offset_y = map->rows - map->render->window_height / \
 map->render->resolution;
 	map->render->map_offset_x = map->cols - map->render->window_width / \
