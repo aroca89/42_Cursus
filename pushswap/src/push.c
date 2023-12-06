@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 07:01:53 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/04/08 02:51:19 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/12/02 20:58:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	push(t_list **lstdst, t_list **head, char origin)
 {
 	t_list	*save_head;
 
-	if ((lstdst && *lstdst) && (head && *head))
+	if ((head && *head))
 	{
 		save_head = *head;
 		*head = (*head)->next;

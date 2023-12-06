@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 07:25:36 by aroca-pa          #+#    #+#              #
-#    Updated: 2023/07/26 17:15:31 by aroca-pa         ###   ########.fr        #
+#    Updated: 2023/12/06 19:17:34 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 
 # ********************************* VARIABLES ******************************** #
 NAME = push_swap
-INCLUDES = ./push_swap.h
+INCLUDES = ./push_swap
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -v #-02
+CFLAGS = -Wall -Werror -Wextra #-v #-02
 
 SRC_DIR = ./src
 SRC = push_swap.c\
@@ -27,6 +27,8 @@ SRC = push_swap.c\
 	  checkerror.c\
 	  main.c\
 	  onetwothree.c\
+	  four_or_five.c\
+	  magic_swap.c
 
 # ****************************** CREACION OBJECTS ***************************** #
 
@@ -47,8 +49,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	make bonus -C $(LIBFT_DIR)
-	rm -f logs
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $@
+	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -72,13 +73,6 @@ debug: clean $(NAME)
 
 sani: CFLAGS += -g3 -fsanitize=address
 sani: clean $(NAME)
-
-# *************************** Reglas de commits *************************** #
-
-commit: fclean
-	git add .
-	git commit -m "save make"
-	git push
 
 # ******************************** Titulos *********************************** #
 print-%:

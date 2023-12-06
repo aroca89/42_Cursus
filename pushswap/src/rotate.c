@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 07:12:02 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/04/08 02:52:37 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:23:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 
 static void	rotate(t_list **lst)
 {
-	t_list	*head;
+    t_list	*head;
+    t_list	*last;
 
-	if (lst && *lst)
-	{
-		head = (*lst)->next;
-		(*lst)->next = NULL;
-		ft_lstadd_back(*lst, &head);
-		*lst = head;
-	}
+    if (lst && *lst && (*lst)->next)
+    {
+        head = *lst;
+        *lst = (*lst)->next;
+        head->next = NULL;
+
+        last = *lst;
+        while (last->next)
+            last = last->next;
+
+        last->next = head;
+    }
 }
 
 void	rotate_ra(t_list **lst)

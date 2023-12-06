@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "../push_swap.h"
 #include <unistd.h>
+#include "../libft_42/libft.h"
+#include "../push_swap.h"
 
 t_list *startstack(int argc, char **argv)
 {

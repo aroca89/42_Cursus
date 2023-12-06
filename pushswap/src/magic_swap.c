@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   magic_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 04:48:58 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/04/08 05:04:02 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:36:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <unistd.h>
+
+#include "../push_swap.h"
+
+
 void magic_swap(t_list **lst)
 {
-	t_list stock_b;
-	size_t len;
-
-	stack_b = NULL;
-	len = ft_stlsize(stack_A) ;
-
-
-
-
-
-	return ;
+	
+		four_or_five(lst);
 }
+
+
+
+
 	

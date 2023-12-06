@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 04:09:47 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/04/08 03:00:36 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:26:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,28 @@
 #include <unistd.h>
 
 static void	rotate_r(t_list **lst)
+{
+    t_list	*last;
+    t_list	*prev = NULL;
+
+    if (lst && *lst)
+    {
+        last = *lst;
+        while (last->next)
+        {
+            prev = last;
+            last = last->next;
+        }
+        if (prev)
+        {
+            prev->next = NULL;
+            last->next = *lst;
+            *lst = last;
+        }
+    }
+}
+
+/*static void	rotate_r(t_list **lst)
 {
 	t_list	*last;
 
@@ -26,7 +48,7 @@ static void	rotate_r(t_list **lst)
 			(*lst) = (*lst)->next;
 		(*lst)->next = NULL;
 	}
-}
+}*/
 
 void	rotate_rra(t_list **lst)
 {

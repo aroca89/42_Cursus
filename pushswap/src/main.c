@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aroca-pa <aroca-pa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 04:29:58 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/04/08 05:04:08 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:35:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "../push_swap.h"
 #include <unistd.h>
+#include "../push_swap.h"
 
-static void print_list(t_list *list)
+void print_list(t_list *list)
 {
     while (list)
     {
@@ -33,14 +33,19 @@ int	main(int argc, char *argv[])
 		write(1, "\033[31mERROR\033[0m\n", 15);
 	printf("Lista creada: ");
 	print_list(stack_A);
-	if (ft_lstsize(stack_A) < 4)
+	if (ft_lstsize(stack_A) <= 3)
 		onetwothree(&stack_A);
-	if (ft_lstsize(stack_A) > 3)
+	else if (ft_lstsize(stack_A) <= 5)
 	{
-	//	magic_swap(&stack_A);
+		four_or_five(&stack_A);
+	}
+	else
+	{
+		magic_swap(&stack_A);
 	}
 	printf("Lista ordenada: ");
 	print_list(stack_A);
+	free(stack_A);
 	
 
 	return (0);
