@@ -15,6 +15,8 @@
 #include <limits.h>
 #include <stddef.h>
 #include <unistd.h>
+#include <stdio.h>
+
 
 int	checkerror(char **argv)
 {
@@ -45,12 +47,26 @@ void	ft_isint(int nbr)
 	return ;
 }
 
-void ft_duplicate(t_list **lst)
-{
-    if (!lst || !(*lst) || !((*lst)->next))
-        return; // Asegurarse de que haya al menos 2 nodos
+int check_duplicate(t_list *lst) {
+    t_list *current;
+    t_list *check;
 
-    if ((*lst)->content == (*lst)->next->content)
-        write(1, "\033[31mERROR\033[0m\n", 15);
-    return ;
+    if (!lst || !(lst->next))
+        return 0; // Asegurarse de que haya al menos 2 nodos
+
+    check = lst;
+    while(check != NULL)
+    {
+        printf("Valor de check: %d\n", (int)(intptr_t)check->content);
+        current = check->next;
+        while(current != NULL)
+        {
+            printf("Valor de current: %d\n", (int)(intptr_t)current->content);
+            if ((int)(intptr_t)check->content == (int)(intptr_t)current->content)
+                return 0;
+            current = current->next;
+        }
+        check = check->next;
+    }
+    return 1;
 }

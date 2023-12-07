@@ -26,27 +26,27 @@ void print_list(t_list *list)
 
 int	main(int argc, char *argv[])
 {
-	t_list	*stack_A;
+	if (argc >= 2) {
+		t_list	*stack_A;
 
-	stack_A = startstack(argc, argv);
-	if	(stack_A == NULL)
-		write(1, "\033[31mERROR\033[0m\n", 15);
-	printf("Lista creada: ");
-	print_list(stack_A);
-	if (ft_lstsize(stack_A) <= 3)
-		onetwothree(&stack_A);
-	else if (ft_lstsize(stack_A) <= 5)
-	{
-		four_or_five(&stack_A);
+		stack_A = startstack(argc, argv);
+		if	(stack_A == NULL || !check_duplicate(stack_A)) {
+			write(1, "\033[31mERROR\033[0m\n", 15);
+			return 0;
+		}
+		printf("Lista creada: ");
+		print_list(stack_A);
+		if (ft_lstsize(stack_A) <= 3)
+			onetwothree(&stack_A);
+		else if (ft_lstsize(stack_A) <= 5)
+			four_or_five(&stack_A);
+		else
+		{
+			magic_swap(&stack_A);
+		}
+		printf("Lista ordenada: ");
+		print_list(stack_A);
+		free(stack_A);
 	}
-	else
-	{
-		magic_swap(&stack_A);
-	}
-	printf("Lista ordenada: ");
-	print_list(stack_A);
-	free(stack_A);
-	
-
 	return (0);
 }

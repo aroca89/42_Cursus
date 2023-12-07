@@ -3,31 +3,49 @@
 
 #include "../push_swap.h"
 
+
+static void rotate_min_moves(t_list **lst, int index)
+{
+	int size;
+
+	size = ft_lstsize(*lst);
+	if (index <= size / 2)
+		rotate_ra(lst);
+	else
+		rotate_rra(lst);
+}
+
 static void find_smaller(t_list **lst)
 {
     t_list *temp;
     t_list *smaller;
+	int index;
+	int index_smoller;
 
     temp = *lst;
     smaller = temp;
 
     // Encuentra el elemento más pequeño
+
     while (temp)
     {
         if ((int)(intptr_t)smaller->content > (int)(intptr_t)temp->content)
+		{
             smaller = temp;
+			index_smoller = index;
 			printf("El valor más pequeño es: %d\n", (int)(intptr_t)smaller->content);
-        temp = temp->next;    
+		}
+		temp = temp->next;
+		index++;
+		//printf("indice >>> %d\n", index);
     }
 
     // Mueve el elemento más pequeño a la cabeza de la lista
     while ((*lst)->content != smaller->content)
     {
-        rotate_ra(lst);
+        rotate_min_moves(lst, index_smoller);
     }
-	
 }
-
 
 static void find_push(t_list **lst, t_list **stack_B)
 {
@@ -64,5 +82,5 @@ void four_or_five(t_list **lst)
 	free(stack_B);
 	
 	printf("stack_A: ");
-	print_list(*lst);	
+	print_list(*lst);
 }

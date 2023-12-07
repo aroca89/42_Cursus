@@ -20,7 +20,7 @@ int		check_order(t_list *lst);
 int		checkerror(char **argv);
 int		main(int argc, char *argv[]);
 t_list *startstack(int argc, char **argv);
-void	ft_duplicate(t_list **lst);
+int	    check_duplicate(t_list *lst);
 void	ft_isint(int nbr);
 void	onetwothree(t_list **lst);
 void	push(t_list **lstdst, t_list **head, char origin);
