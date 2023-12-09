@@ -15,6 +15,7 @@
 
 # include "./libft_42/libft.h"
 
+//void	print_list(t_list *list);
 int		check_order(t_list *lst);
 int		checkerror(char **argv);
 int		main(int argc, char *argv[]);
@@ -36,5 +37,4 @@ void    rotate_rrr(t_list **lsta, t_list **lstb);
 void	four_or_five(t_list **lst);
 void	print_list(t_list *list);
 void	magic_swap(t_list **lst);
-void    rotate_min_moves(t_list **lst, int index);
 #endif

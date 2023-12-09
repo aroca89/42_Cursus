@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 01:00:59 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/12/02 17:12:45 by marvin           ###   ########.fr       */
+/*   Updated: 2023/12/08 14:11:01 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,25 @@ int	check_order(t_list *lst)
 
 void	onetwothree(t_list **lst)
 {
+	int first_node;
+	int	second_node;
+	int third_node;
+
 	if (!lst || !(*lst) || !((*lst)->next) || !((*lst)->next->next))
-		return; // Asegurarse de que haya al menos 3 nodos
-
-	while (!check_order(*lst)) // Pasar lst directamente, no modificar dentro de check_order
+		return ;
+	while (!check_order(*lst))
 	{
-		int first_node = (int)(intptr_t)((*lst)->content);
-		int second_node = (int)(intptr_t)((*lst)->next->content);
-		int third_node = (int)(intptr_t)((*lst)->next->next->content);
+		first_node = (int)(intptr_t)((*lst)->content);
+		second_node = (int)(intptr_t)((*lst)->next->content);
+		third_node = (int)(intptr_t)((*lst)->next->next->content);
 
-		//printf("First: %d, Second: %d, Third: %d\n", first_node, second_node, third_node);
-
-
-		// Cubrir todos los casos posibles para 3 elementos
 		if (first_node > second_node && second_node < third_node && first_node < third_node)
-			swap_sa(lst); // Caso: 2, 1, 3
+			swap_sa(lst);
 		else if (first_node > second_node && second_node > third_node)
-			rotate_ra(lst); // Caso: 3, 2, 1
+			rotate_ra(lst);
 		else if (first_node > second_node && second_node < third_node && first_node > third_node)
-			rotate_rra(lst); // Caso: 3, 1, 2
+			rotate_rra(lst);
 		else if (first_node < second_node && second_node > third_node)
-			rotate_rra(lst); // Caso: 1, 3, 2
+			rotate_rra(lst);
 	}
 }

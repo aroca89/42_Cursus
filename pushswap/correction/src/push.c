@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 07:01:53 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/12/02 20:58:24 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:10:53 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	push(t_list **lstdst, t_list **head, char origin)
 		ft_lstadd_front(lstdst, save_head);
 	}
 	if (origin == 'a')
-		write(2, "\033[1;33mPa\n\033[0m", 14);
+		write(1, "pb\n", 3);
 	else if (origin == 'b')
-		write(2, "\033[1;33mPb\n\033[0m", 14);
+		write(1, "pa\n", 3);
 }

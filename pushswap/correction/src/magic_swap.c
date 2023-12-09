@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   magic_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 07:01:53 by aroca-pa          #+#    #+#             */
-/*   Updated: 2023/12/02 20:58:24 by aroca-pa         ###   ########.fr       */
+/*   Created: 2023/04/08 04:48:58 by aroca-pa          #+#    #+#             */
+/*   Updated: 2023/12/08 17:22:57 by aroca-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include <stdio.h>
 #include <unistd.h>
 
-void	push(t_list **lstdst, t_list **head, char origin)
-{
-	t_list	*save_head;
+#include "../push_swap.h"
 
-	if ((head && *head))
-	{
-		save_head = *head;
-		*head = (*head)->next;
-		ft_lstadd_front(lstdst, save_head);
-	}
-	if (origin == 'a')
-		write(2, "\033[1;33mPa\n\033[0m", 14);
-	else if (origin == 'b')
-		write(2, "\033[1;33mPb\n\033[0m", 14);
+int find_middle (lst
+{
+
+
+
+	return (midde_number)
 }
+void magic_swap(t_list **lst)
+{
+		four_or_five(lst);
+}
+
+
+
+
+	
