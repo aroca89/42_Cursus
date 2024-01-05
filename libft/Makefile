@@ -54,6 +54,7 @@ SRC = ft_isalnum.c \
 	  ft_strtrim.c\
 	  ft_split.c\
 	  ft_striteri.c\
+	  ft_ulltoa.c\
 
 SRC_BONUS = ft_lstnew_bonus.c\
 			ft_lstadd_front_bonus.c\
