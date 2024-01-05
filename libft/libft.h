@@ -6,14 +6,14 @@
 /*   By: aroca-pa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 14:05:03 by aroca-pa          #+#    #+#             */
-/*   Updated: 2022/09/23 15:47:31 by aroca-pa         ###   ########.fr       */
+/*   Updated: 2024/01/05 12:57:04 by aalvarez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include<stdlib.h>
+# include <stdlib.h>
 
 //the entire header file file
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
@@ -51,6 +51,7 @@ void	ft_putnbr_fd(int n, int fd);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+char	*ft_ulltoa_base(unsigned long long n, int base);
 typedef struct s_list
 {
 	void			*content;
